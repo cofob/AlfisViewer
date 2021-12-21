@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+    {% if b.transaction %}
+        <p>{{ b.transaction }}</p>
+    {% else %}
+        <p>This is a signing block</p>
+    {% endif %}
+{% endblock content %}

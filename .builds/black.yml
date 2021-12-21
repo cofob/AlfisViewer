@@ -1,0 +1,20 @@
+image: ubuntu/jammy
+packages:
+  - python3
+  - python3-pip
+secrets:
+  - 3b123d40-8542-49cb-88e9-4552aa2a02fa
+tasks:
+  - install-requirements: |
+      sudo pip3 install -U black
+  - apply-style: |
+      GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git clone git@git.sr.ht:~cofob/AlfisViewer src
+      cd src
+      black .
+  - commit: |
+      cd src
+      git add *
+      git config --global user.name "CI"
+      git config --global user.email "builds@builds.sr.ht"
+      git commit -am "Applied BLACK code style" --no-verify
+      GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" git push origin HEAD:master

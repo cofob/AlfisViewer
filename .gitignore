@@ -1,0 +1,6 @@
+*.pyc
+__pycache__
+config.json
+db.sqlite3
+blockchain.db
+.idea
