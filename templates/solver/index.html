@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% block content %}
+    <form action="/solve/">
+        <input type="text" name="domain">
+        <button type="submit">Submit!</button>
+    </form>
+    {% if msg %}
+        <p>{{ msg }}</p>
+    {% endif %}
+{% endblock content %}

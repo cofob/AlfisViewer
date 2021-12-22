@@ -1,8 +1,19 @@
 {% extends 'base.html' %}
+{% load common_tags %}
 {% block content %}
+    <p>ID: {{ b.id }}</p>
+    <p>Hash: {{ b.hash|hexlify }}</p>
+    <p>Prev hash: <a href="/block/{{ b.prev_block_hash|hexlify }}">{{ b.prev_block_hash|hexlify }}</a></p>
     {% if b.transaction %}
-        <p>{{ b.transaction }}</p>
+        <p>Type: transaction</p>
+        <p>Domain: {{ transaction.identity|get_domain }}</p>
+        <p>Raw transaction:</p>
+        <div class="raw">
+            {% for line in raw %}
+                <p>{{ line }}</p>
+            {% endfor %}
+        </div>
     {% else %}
-        <p>This is a signing block</p>
+        <p>Type: signing</p>
     {% endif %}
 {% endblock content %}

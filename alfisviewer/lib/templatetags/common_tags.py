@@ -1,7 +1,7 @@
+import binascii
+
 from django import template
-from django.conf import settings
-from hashlib import sha256
-import datetime
+from domain.models import Domain
 
 register = template.Library()
 
@@ -16,3 +16,20 @@ def update_variable(value):
 @register.filter
 def get_item(dictionary, key):
     return dictionary.get(key)
+
+
+@register.filter
+def hexlify(value):
+    return binascii.hexlify(value).upper().decode()
+
+
+@register.filter
+def get_domain(domain_hash):
+    try:
+        d = Domain.objects.get(hash=domain_hash)
+    except Domain.DoesNotExist:
+        d = Domain(hash=domain_hash)
+        d.save()
+    if d.real_domain:
+        return d.real_domain
+    return domain_hash

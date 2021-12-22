@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "index.apps.IndexConfig",
     "block.apps.BlockConfig",
+    "domain.apps.DomainConfig",
     "alfisviewer.lib",
 ]
 
