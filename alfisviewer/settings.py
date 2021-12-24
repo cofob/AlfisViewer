@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "index.apps.IndexConfig",
     "block.apps.BlockConfig",
     "domain.apps.DomainConfig",
+    "search.apps.SearchConfig",
     "alfisviewer.lib",
 ]
 
@@ -77,6 +78,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "alfisviewer.lib.context_processors.commit_hash",
                 "alfisviewer.lib.context_processors.block_count",
+                "alfisviewer.lib.context_processors.update_scheduler",
             ],
         },
     },

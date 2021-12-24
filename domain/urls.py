@@ -3,5 +3,6 @@ from domain import views
 
 
 urlpatterns = [
-    path("<domain_id>", views.domain, name="block"),
+    path("solve", views.domain_solve, name="domain_solve"),
+    path("<domain_id>", views.domain, name="domain"),
 ]

@@ -19,19 +19,31 @@ def block(request, block_id):
             context['transaction'] = json.loads(b.transaction)
             context['transaction']['data'] = json.loads(context['transaction']['data'])
             context['raw'] = json.dumps(context['transaction'], indent=2).split('\n')
+            if context['transaction'].get('class') != 'origin':
+                context['d'] = Domain.objects.get(hash=context['transaction']['identity'], zone=context['transaction']['data']['zone'])
+            else:
+                context['origin'] = True
         except json.JSONDecodeError:
             pass
+    try:
+        for i in range(1, 5):
+            bp = alfis.Blocks.get_by_id(b.id-i)
+            if bp.transaction:
+                context['bp'] = bp
+    except:
+        pass
     return render(request, "block/block.html", context=context)
 
 
-# Добавляем в базу все домены
-for b in alfis.Blocks.select().iterator():
-    try:
-        trans = json.loads(b.transaction)
+def update_blockchain():
+    for b in alfis.Blocks.select().iterator():
         try:
-            d = Domain.objects.get(hash=trans['identity'])
-        except Domain.DoesNotExist:
-            d = Domain(hash=trans['identity'])
-            d.save()
-    except:
-        pass
+            trans = json.loads(b.transaction)
+            data = json.loads(trans['data'])
+            try:
+                d = Domain.objects.get(hash=trans['identity'], zone=data['zone'])
+            except Domain.DoesNotExist:
+                d = Domain(hash=trans['identity'], zone=data['zone'])
+                d.save()
+        except:
+            pass

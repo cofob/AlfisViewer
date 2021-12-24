@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% block content %}
+<h1>Domain solve</h1>
+<form>
+    <input name="domain" required>
+    <button type="submit">Submit</button>
+    {% if error %}
+        <h1>Not found!</h1>
+    {% endif %}
+</form>
+{% endblock content %}

@@ -25,11 +25,24 @@ def hexlify(value):
 
 @register.filter
 def get_domain(domain_hash):
-    try:
-        d = Domain.objects.get(hash=domain_hash)
-    except Domain.DoesNotExist:
-        d = Domain(hash=domain_hash)
-        d.save()
+    d = Domain.objects.get(hash=domain_hash)
     if d.real_domain:
-        return d.real_domain
-    return domain_hash
+        return '%s.%s' % (d.real_domain, d.zone)
+    return '<%s>.%s' % (d.hash, d.zone)
+
+
+@register.filter
+def get_domain_str(d):
+    if d.real_domain:
+        return '%s.%s' % (d.real_domain, d.zone)
+    return '<%s>.%s' % (d.hash, d.zone)
+
+
+@register.filter
+def incr(i):
+    return i+1
+
+
+@register.filter
+def decr(i):
+    return i-1

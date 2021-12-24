@@ -22,6 +22,8 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("index.urls")),
     path("block/", include("block.urls")),
+    path("search/", include("search.urls")),
+    path("domain/", include("domain.urls")),
 ]
 
 if settings.DEBUG:

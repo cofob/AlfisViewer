@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% block content %}
+    {% if not domain_fullmatch and not domain_results and not block_results %}
+        <h1>Not found</h1>
+    {% endif %}
+    {% if domain_fullmatch %}
+        <h1>Full match:</h1>
+        <a href="/domain/{% if domain_fullmatch.real_domain %}{{ domain_fullmatch.real_domain }}{% else %}<{{ domain_fullmatch.hash }}>{% endif %}.{{ domain_fullmatch.zone }}">
+            {% if domain_fullmatch.real_domain %}{{ domain_fullmatch.real_domain }}{% else %}<{{ domain_fullmatch.hash }}>{% endif %}.{{ domain_fullmatch.zone }}
+        </a>
+    {% endif %}
+    {% if domain_results %}
+        <h1>Domains:</h1>
+        {% for res in domain_results %}
+            {% if res.real_domain %}
+                {{ res.real_domain }}
+            {% else %}
+                <{{ res.hash }}>
+            {% endif %}.{{ res.zone }}
+            <p>{{ res }}</p>
+        {% endfor %}
+    {% endif %}
+    {% if block_results %}
+        <h1>Blocks:</h1>
+        {% for res in block_results %}
+            <a href="/block/{{ res.hash|hexlify }}">{{ res.hash|hexlify }}</a>
+        {% endfor %}
+    {% endif %}
+{% endblock content %}

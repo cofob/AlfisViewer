@@ -1,19 +1,27 @@
 {% extends 'base.html' %}
 {% load common_tags %}
 {% block content %}
-    <p>ID: {{ b.id }}</p>
+    <p>ID: {{ b.id }} <a href="/block/{{ b.id|incr }}">Next >></a></p>
     <p>Hash: {{ b.hash|hexlify }}</p>
-    <p>Prev hash: <a href="/block/{{ b.prev_block_hash|hexlify }}">{{ b.prev_block_hash|hexlify }}</a></p>
+    {% if not origin %}
+        <p>Prev hash: <a href="/block/{{ b.prev_block_hash|hexlify }}">{{ b.prev_block_hash|hexlify }}</a></p>
+    {% endif %}
     {% if b.transaction %}
-        <p>Type: transaction</p>
-        <p>Domain: {{ transaction.identity|get_domain }}</p>
+        {% if origin %}
+            <p>Type: origin</p>
+        {% else %}
+            <p>Type: transaction</p>
+            <p>Domain: <a href="/domain/{{ transaction.identity|get_domain }}">{{ transaction.identity|get_domain }}</a></p>
+        {% endif %}
         <p>Raw transaction:</p>
         <div class="raw">
-            {% for line in raw %}
-                <p>{{ line }}</p>
-            {% endfor %}
+            <code>
+                {% for line in raw %}
+                        {{ line }}<br>
+                {% endfor %}
+            </code>
         </div>
     {% else %}
-        <p>Type: signing</p>
+        <p>Type: <a href="/block/{{ bp.id }}">signing</a></p>
     {% endif %}
 {% endblock content %}
