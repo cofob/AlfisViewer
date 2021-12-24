@@ -17,6 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.http.response import FileResponse
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,6 +26,8 @@ urlpatterns = [
     path("search/", include("search.urls")),
     path("domain/", include("domain.urls")),
     path("key/", include("key.urls")),
+    path("blockchain.db", lambda x: FileResponse(x, filename='blockchain.db')),
+    path("db.sqlite3", lambda x: FileResponse(x, filename='db.sqlite3')),
 ]
 
 if settings.DEBUG:
