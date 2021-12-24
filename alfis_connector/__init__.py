@@ -51,7 +51,7 @@ def get_block_count():
     global BLOCK_COUNT
     t = time()
     if BLOCK_COUNT[1] + 30 < t:
-        BLOCK_COUNT = [Blocks.select().count(), t]
+        BLOCK_COUNT = [Blocks.select().count()+1, t]
     return BLOCK_COUNT[0]
 
 
