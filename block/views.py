@@ -7,6 +7,12 @@ from django.http.response import Http404
 import alfis_connector as alfis
 
 
+def block_list(request):
+    page = int(request.GET.get('p', 0))
+    out = alfis.Blocks.select()[page * 20:(page + 1) * 20]
+    return render(request, 'block/list.html', context={'page': page, 'list': out})
+
+
 def block(request, block_id):
     b = alfis.Blocks.get_or_none(id=block_id)
     if not b:

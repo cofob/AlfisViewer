@@ -15,6 +15,10 @@ def block_count(request):
     return {"BLOCK_COUNT": str(alfis.get_block_count())}
 
 
+def domain_count(request):
+    return {"DOMAIN_COUNT": str(alfis.get_domain_count())}
+
+
 def update_scheduler(request):
     t = int(time())
     if settings.BLOCKCHAIN_LAST_UPDATE + 30 <= t:

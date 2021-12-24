@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% block content %}
+<h1>Blocks</h1>
+<p><a href="/block?p={{ page|incr }}">Next >></a></p>
+<p><a href="/block?p={{ page|decr }}"><< Prev</a></p>
+{% for item in list %}
+    <p><a href="/block/{{ item }}">{{ item.id }}. {{ item.hash|hexlify }}</a></p>
+{% endfor %}
+<p><a href="/block?p={{ page|incr }}">Next >></a></p>
+<p><a href="/block?p={{ page|decr }}"><< Prev</a></p>
+{% endblock content %}

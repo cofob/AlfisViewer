@@ -3,6 +3,7 @@
 {% block content %}
     <p>ID: {{ b.id }} <a href="/block/{{ b.id|incr }}">Next >></a></p>
     <p>Hash: {{ b.hash|hexlify }}</p>
+    <p>By: {{ b.pub_key|hexlify }}</p>
     {% if not origin %}
         <p>Prev hash: <a href="/block/{{ b.prev_block_hash|hexlify }}">{{ b.prev_block_hash|hexlify }}</a></p>
     {% endif %}

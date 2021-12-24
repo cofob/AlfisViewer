@@ -42,3 +42,9 @@ def domain_solve(request):
         except Exception as e:
             return render(request, 'domain/solve.html', context={'error': True})
     return render(request, 'domain/solve.html')
+
+
+def domain_list(request):
+    page = int(request.GET.get('p', 0))
+    out = Domains.select()[page*20:(page+1)*20]
+    return render(request, 'domain/list.html', context={'page': page, 'list': out})

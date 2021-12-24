@@ -7,6 +7,7 @@ db = SqliteDatabase("blockchain.db")
 
 BLOCK_COUNT = [0, 0]
 LATEST_BLOCK = [0, 0]
+DOMAIN_COUNT = [0, 0]
 
 
 class Base(Model):
@@ -52,6 +53,14 @@ def get_block_count():
     if BLOCK_COUNT[1] + 30 < t:
         BLOCK_COUNT = [Blocks.select().count(), t]
     return BLOCK_COUNT[0]
+
+
+def get_domain_count():
+    global DOMAIN_COUNT
+    t = time()
+    if DOMAIN_COUNT[1] + 30 < t:
+        DOMAIN_COUNT = [Domains.select().count(), t]
+    return DOMAIN_COUNT[0]
 
 
 def get_latest_block():

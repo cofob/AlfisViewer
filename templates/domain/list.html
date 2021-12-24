@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% block content %}
+<h1>Domain list</h1>
+<p><a href="/domain?p={{ page|incr }}">Next >></a></p>
+<p><a href="/domain?p={{ page|decr }}"><< Prev</a></p>
+{% for item in list %}
+    <p><a href="/domain/{{ item|get_domains_str }}">{{ item|get_domains_str }}</a></p>
+{% endfor %}
+<p><a href="/domain?p={{ page|incr }}">Next >></a></p>
+<p><a href="/domain?p={{ page|decr }}"><< Prev</a></p>
+{% endblock content %}
