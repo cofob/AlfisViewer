@@ -5,7 +5,7 @@
 <p><a href="/block?p={{ page|incr }}">Next >></a></p>
 <p><a href="/block?p={{ page|decr }}"><< Prev</a></p>
 {% for item in list %}
-    <p><a href="/block/{{ item }}">{{ item.id }}. {{ item.hash|hexlify }}</a></p>
+    <p><a href="/block/{{ item }}"><code>{{ item.id }}. {{ item.hash|hexlify }}</code></a></p>
 {% endfor %}
 <p><a href="/block?p={{ page|incr }}">Next >></a></p>
 <p><a href="/block?p={{ page|decr }}"><< Prev</a></p>

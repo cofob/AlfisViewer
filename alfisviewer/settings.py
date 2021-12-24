@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     "block.apps.BlockConfig",
     "domain.apps.DomainConfig",
     "search.apps.SearchConfig",
+    "key.apps.KeyConfig",
     "alfisviewer.lib",
 ]
 

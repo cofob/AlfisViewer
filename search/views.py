@@ -19,6 +19,15 @@ def index(request):
         block_results = Blocks.select().filter(hash=unhexlify(query))[:20]
     except:
         block_results = []
+    try:
+        unhexlify(query)
+        if len(query) != 64:
+            key = None
+        key = query
+    except Exception as e:
+        print(e)
+        key = None
     return render(request, 'search/index.html', context={'domain_results': domain_results,
                                                          'block_results': block_results,
-                                                         'domain_fullmatch': domain_fullmatch})
+                                                         'domain_fullmatch': domain_fullmatch,
+                                                         'key': key})

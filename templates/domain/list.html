@@ -5,7 +5,7 @@
 <p><a href="/domain?p={{ page|incr }}">Next >></a></p>
 <p><a href="/domain?p={{ page|decr }}"><< Prev</a></p>
 {% for item in list %}
-    <p><a href="/domain/{{ item|get_domains_str }}">{{ item|get_domains_str }}</a></p>
+    <p><a href="/domain/{{ item|get_domains_str }}"><code>{{ item|get_domains_str }}</code></a></p>
 {% endfor %}
 <p><a href="/domain?p={{ page|incr }}">Next >></a></p>
 <p><a href="/domain?p={{ page|decr }}"><< Prev</a></p>

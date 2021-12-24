@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load common_tags %}
 {% block content %}
-    {% if not domain_fullmatch and not domain_results and not block_results %}
+    {% if not domain_fullmatch and not domain_results and not block_results and not key %}
         <h1>Not found</h1>
     {% endif %}
     {% if domain_fullmatch %}
@@ -26,5 +26,9 @@
         {% for res in block_results %}
             <a href="/block/{{ res.hash|hexlify }}">{{ res.hash|hexlify }}</a>
         {% endfor %}
+    {% endif %}
+    {% if key %}
+        <h1>Key:</h1>
+        <p><a href="/key/{{ key }}">{{ key }}</a> Might by 404</p>
     {% endif %}
 {% endblock content %}

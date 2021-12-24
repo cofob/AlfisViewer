@@ -24,6 +24,7 @@ urlpatterns = [
     path("block/", include("block.urls")),
     path("search/", include("search.urls")),
     path("domain/", include("domain.urls")),
+    path("key/", include("key.urls")),
 ]
 
 if settings.DEBUG:

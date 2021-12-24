@@ -2,7 +2,7 @@
 {% load common_tags %}
 {% block content %}
 <h1>Domain</h1>
-<p>Owner: {{ domain_data.signing|hexlify }}</p>
+<p>Owner: <a href="/key/{{ domain_data.signing|hexlify }}">{{ domain_data.signing|hexlify }}</a></p>
 <p>Zone: {{ domain_obj.zone }}</p>
 <p>Hashed: {{ domain_obj.hash }}</p>
 <p>Solved: {% if domain_obj.real_domain %}{{ domain_obj.real_domain }}{% else %}Domain not solved. <a href="/domain/solve">Solve.</a>{% endif %}</p>
