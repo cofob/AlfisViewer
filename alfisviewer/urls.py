@@ -22,7 +22,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("index.urls")),
     path("block/", include("block.urls")),
-    path("solve/", include("solver.urls")),
 ]
 
 if settings.DEBUG:

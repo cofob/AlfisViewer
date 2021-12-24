@@ -24,6 +24,7 @@ def block(request, block_id):
     return render(request, "block/block.html", context=context)
 
 
+# Добавляем в базу все домены
 for b in alfis.Blocks.select().iterator():
     try:
         trans = json.loads(b.transaction)
