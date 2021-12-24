@@ -59,7 +59,7 @@ def get_domain_count():
     global DOMAIN_COUNT
     t = time()
     if DOMAIN_COUNT[1] + 30 < t:
-        DOMAIN_COUNT = [Domains.select().count(), t]
+        DOMAIN_COUNT = [len(list(set([i.identity for i in Domains.select()]))), t]
     return DOMAIN_COUNT[0]
 
 
