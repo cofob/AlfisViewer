@@ -7,17 +7,24 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Domain',
+            name="Domain",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('hash', models.CharField(max_length=64)),
-                ('zone', models.CharField(max_length=12)),
-                ('real_domain', models.CharField(max_length=64, null=True)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("hash", models.CharField(max_length=64)),
+                ("zone", models.CharField(max_length=12)),
+                ("real_domain", models.CharField(max_length=64, null=True)),
             ],
         ),
     ]

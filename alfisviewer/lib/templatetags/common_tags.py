@@ -27,30 +27,30 @@ def hexlify(value):
 def get_domain(domain_hash):
     d = Domain.objects.get(hash=domain_hash)
     if d.real_domain:
-        return '%s.%s' % (d.real_domain, d.zone)
-    return '<%s>.%s' % (d.hash, d.zone)
+        return "%s.%s" % (d.real_domain, d.zone)
+    return "<%s>.%s" % (d.hash, d.zone)
 
 
 @register.filter
 def get_domain_str(d):
     if d.real_domain:
-        return '%s.%s' % (d.real_domain, d.zone)
-    return '<%s>.%s' % (d.hash, d.zone)
+        return "%s.%s" % (d.real_domain, d.zone)
+    return "<%s>.%s" % (d.hash, d.zone)
 
 
 @register.filter
 def get_domains_str(ds):
     d = Domain.objects.get(hash=hexlify(ds.identity).upper())
     if d.real_domain:
-        return '%s.%s' % (d.real_domain, d.zone)
-    return '<%s>.%s' % (d.hash, d.zone)
+        return "%s.%s" % (d.real_domain, d.zone)
+    return "<%s>.%s" % (d.hash, d.zone)
 
 
 @register.filter
 def incr(i):
-    return i+1
+    return i + 1
 
 
 @register.filter
 def decr(i):
-    return i-1
+    return i - 1

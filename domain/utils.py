@@ -3,16 +3,16 @@ from .models import Domain
 
 
 def hash_domain(d):
-    return sha256(sha256(d.encode('utf-8')).digest())
+    return sha256(sha256(d.encode("utf-8")).digest())
 
 
 def get_domain_hash(domain, zone=None):
     if zone:
-        full_domain = domain + '.' + zone
+        full_domain = domain + "." + zone
     else:
-        zone = domain.split('.')[1]
+        zone = domain.split(".")[1]
         full_domain = str(domain)
-        domain = domain.split('.')[0]
+        domain = domain.split(".")[0]
     try:
         return Domain.objects.get(real_domain=domain, zone=zone)
     except Domain.DoesNotExist:
@@ -23,4 +23,3 @@ def get_domain_hash(domain, zone=None):
         d.real_domain = domain
         d.save()
     return d
-

@@ -24,4 +24,4 @@ def update_scheduler(request):
     if settings.BLOCKCHAIN_LAST_UPDATE + 30 <= t:
         update_blockchain()
         settings.BLOCKCHAIN_LAST_UPDATE = t
-    return {"UPDATE_IN": settings.BLOCKCHAIN_LAST_UPDATE-t+30}
+    return {"UPDATE_IN": settings.BLOCKCHAIN_LAST_UPDATE - t + 30}

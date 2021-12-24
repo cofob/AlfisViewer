@@ -6,7 +6,7 @@ from domain.utils import get_domain_hash
 
 
 def index(request):
-    query = request.GET.get('query', '')
+    query = request.GET.get("query", "")
     try:
         domain_fullmatch = get_domain_hash(query)
     except:
@@ -27,7 +27,13 @@ def index(request):
     except Exception as e:
         print(e)
         key = None
-    return render(request, 'search/index.html', context={'domain_results': domain_results,
-                                                         'block_results': block_results,
-                                                         'domain_fullmatch': domain_fullmatch,
-                                                         'key': key})
+    return render(
+        request,
+        "search/index.html",
+        context={
+            "domain_results": domain_results,
+            "block_results": block_results,
+            "domain_fullmatch": domain_fullmatch,
+            "key": key,
+        },
+    )

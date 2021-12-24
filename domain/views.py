@@ -8,7 +8,7 @@ from alfis_connector import Domains
 from binascii import unhexlify
 
 
-pattern = re.compile(r'(.*)\.(.*)')
+pattern = re.compile(r"(.*)\.(.*)")
 
 
 def domain(request, domain_id):
@@ -19,7 +19,7 @@ def domain(request, domain_id):
     except IndexError:
         raise Http404
     try:
-        if not d.startswith('<') and not d.endswith('>'):
+        if not d.startswith("<") and not d.endswith(">"):
             do = get_domain_hash(d, z)
         else:
             d = d[1:-1]
@@ -29,22 +29,26 @@ def domain(request, domain_id):
     d_lst = Domains.select().filter(identity=unhexlify(do.hash))
     for d in d_lst:
         data = json.loads(d.data)
-        data_str = json.dumps(data, indent=2).split('\n')
-        if data['zone'] == z:
-            return render(request, 'domain/index.html', context={'domain_obj': do, 'domain_data': d, 'data': data_str})
+        data_str = json.dumps(data, indent=2).split("\n")
+        if data["zone"] == z:
+            return render(
+                request,
+                "domain/index.html",
+                context={"domain_obj": do, "domain_data": d, "data": data_str},
+            )
 
 
 def domain_solve(request):
-    if request.GET.get('domain'):
+    if request.GET.get("domain"):
         try:
-            d = get_domain_hash(request.GET.get('domain'))
-            return HttpResponseRedirect('/domain/%s.%s' % (d.real_domain, d.zone))
+            d = get_domain_hash(request.GET.get("domain"))
+            return HttpResponseRedirect("/domain/%s.%s" % (d.real_domain, d.zone))
         except Exception as e:
-            return render(request, 'domain/solve.html', context={'error': True})
-    return render(request, 'domain/solve.html')
+            return render(request, "domain/solve.html", context={"error": True})
+    return render(request, "domain/solve.html")
 
 
 def domain_list(request):
-    page = int(request.GET.get('p', 0))
-    out = Domains.select()[page*20:(page+1)*20]
-    return render(request, 'domain/list.html', context={'page': page, 'list': out})
+    page = int(request.GET.get("p", 0))
+    out = Domains.select()[page * 20 : (page + 1) * 20]
+    return render(request, "domain/list.html", context={"page": page, "list": out})
