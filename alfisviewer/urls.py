@@ -27,5 +27,5 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
-admin.site.site_header = "alfis admin" + (" debug" if settings.DEBUG else "")
-admin.site.site_title = "alfis admin" + (" debug" if settings.DEBUG else "")
+admin.site.site_header = "AlfisViewer admin" + (" debug" if settings.DEBUG else "")
+admin.site.site_title = "AlfisViewer admin" + (" debug" if settings.DEBUG else "")
