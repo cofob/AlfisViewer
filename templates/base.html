@@ -5,15 +5,15 @@
 <html lang="ru_RU">
    <head>
       <meta charset="UTF-8">
-      <title>{{ title|default:"My title" }} - AlfisViewer</title>
+<!--       TODO: add everywhere title and description-->
+      <title>AlfisViewer</title>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-      <link rel="stylesheet" href="{% static '/css/style.css' %}?v={{ COMMIT_HASH }}">
-      <link rel="shortcut icon" href="{% static '/favicon.ico' %}?v={{ COMMIT_HASH }}">
+<!--      <link rel="stylesheet" href="{% static '/css/style.css' %}?v={{ COMMIT_HASH }}">-->
+<!--      <link rel="shortcut icon" href="{% static '/favicon.ico' %}?v={{ COMMIT_HASH }}">-->
       <meta property="og:type" content="website"/>
       <meta property="og:locale" content="ru_RU">
       <meta property="og:site_name" content="alfis viewer">
-      <meta property="og:title" content="{{ title|default:"My title" }} - AlfisViewer" />
-      <meta property="og:description" content="{{ description|default:"My Cool Description" }}">
+      <meta property="og:title" content="AlfisViewer" />
       <meta property="og:url" content="{{ request.build_absolute_uri }}" />
    </head>
    <body>
