@@ -66,9 +66,9 @@ def to_date(timestamp):
 
 @register.filter
 def add_year(timestamp):
-    return timestamp+31556926
+    return timestamp + 31556926
 
 
 @register.filter
 def is_expired(domain):
-    return (domain.timestamp+31556926) < time()
+    return (domain.timestamp + 31556926) < time()

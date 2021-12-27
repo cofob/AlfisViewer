@@ -9,16 +9,21 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('domain', '0001_initial'),
+        ("domain", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Block',
+            name="Block",
             fields=[
-                ('id', models.IntegerField(primary_key=True, serialize=False)),
-                ('hash', models.BinaryField(max_length=64)),
-                ('domain', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='domain.domain')),
+                ("id", models.IntegerField(primary_key=True, serialize=False)),
+                ("hash", models.BinaryField(max_length=64)),
+                (
+                    "domain",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="domain.domain"
+                    ),
+                ),
             ],
         ),
     ]
