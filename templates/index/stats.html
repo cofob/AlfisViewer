@@ -1,0 +1,195 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 align="center">Statistics</h1>
+<div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+ <div style="width: 500px; height: 500px; margin-top: 50px;">
+   <h3 align="center">Zone popularity</h3>
+   <canvas id="zone-popularity" width="100" height="100"></canvas>
+   <script>
+   const ctx = document.getElementById('zone-popularity').getContext('2d');
+   const data = {
+     labels: [
+       'ygg',
+       'anon',
+       'btn',
+       'conf',
+       'index',
+       'merch',
+       'mirror',
+       'mob',
+       'screen',
+       'srv'
+     ],
+     datasets: [{
+       label: 'Zone popularity',
+       data: {{ zones }},
+       backgroundColor: [
+         '#eeb5eb',
+         '#c26dbc',
+         '#c8f4f9',
+         '#3cacae',
+         '#603f8b',
+         '#b4fee7',
+         '#a16ae8',
+         '#fd49a0',
+         '#21b6a8',
+         '#a3ebb1',
+       ],
+       hoverOffset: 4
+     }]
+   };
+   const config = {
+     type: 'doughnut',
+     data: data,
+   };
+   const zone_popularity = new Chart(ctx, config);
+   </script>
+  </div>
+  <div style="width: 500px; height: 500px; margin-top: 50px;">
+   <h3 align="center">Weekly blocks</h3>
+   <canvas id="week-stats" width="100" height="100"></canvas>
+   <script>
+   const ctx_week = document.getElementById('week-stats').getContext('2d');
+   const data_week = {
+     labels: [
+       'today',
+       '1 day ago',
+       '2 days ago',
+       '3 days ago',
+       '4 days ago',
+       '5 days ago',
+       '6 days ago',
+     ],
+     datasets: [{
+       label: 'Weekly blocks',
+       data: {{ week }},
+       backgroundColor: [
+         '#eeb5eb',
+         '#c26dbc',
+         '#c8f4f9',
+         '#3cacae',
+         '#603f8b',
+         '#b4fee7',
+         '#a16ae8'
+       ],
+       hoverOffset: 4
+     }]
+   };
+   const config_week = {
+     type: 'doughnut',
+     data: data_week,
+   };
+   const week_stats = new Chart(ctx_week, config_week);
+   </script>
+  </div>
+  <div style="width: 500px; height: 500px; margin-top: 50px;">
+   <h3 align="center">Static domains</h3>
+   <canvas id="static-domains" width="100" height="100"></canvas>
+   <script>
+   const ctx_static = document.getElementById('static-domains').getContext('2d');
+   const data_static = {
+     labels: [
+       'static',
+       'moving'
+     ],
+     datasets: [{
+       label: 'Static domains',
+       data: {{ static_domains }},
+       backgroundColor: [
+         '#fd49a0',
+         '#a3ebb1',
+       ],
+       hoverOffset: 4
+     }]
+   };
+   const config_static = {
+     type: 'doughnut',
+     data: data_static,
+   };
+   const static_stats = new Chart(ctx_static, config_static);
+   </script>
+  </div>
+  <div style="width: 500px; height: 500px; margin-top: 50px;">
+   <h3 align="center">Empty domains</h3>
+   <canvas id="empty-domains" width="100" height="100"></canvas>
+   <script>
+   const ctx_empty = document.getElementById('empty-domains').getContext('2d');
+   const data_empty = {
+     labels: [
+       'empty',
+       'non-empty'
+     ],
+     datasets: [{
+       label: 'Empty domains',
+       data: [{{ empty }}, {{ total }} - {{ empty }}],
+       backgroundColor: [
+         '#fd49a0',
+         '#a3ebb1',
+       ],
+       hoverOffset: 4
+     }]
+   };
+   const config_empty = {
+     type: 'doughnut',
+     data: data_empty,
+   };
+   const empty_stats = new Chart(ctx_empty, config_empty);
+   </script>
+  </div>
+      <div style="width: 500px; height: 500px; margin-top: 50px;">
+   <h3 align="center">Unique domains</h3>
+   <canvas id="unique-domains" width="100" height="100"></canvas>
+   <script>
+   const ctx_unique = document.getElementById('unique-domains').getContext('2d');
+   const data_unique = {
+     labels: [
+       'non-unique',
+       'unique'
+     ],
+     datasets: [{
+       label: 'Unique domains',
+       data: [{{ same }}, {{ total }} - {{ same }}],
+       backgroundColor: [
+         '#fd49a0',
+         '#a3ebb1',
+       ],
+       hoverOffset: 4
+     }]
+   };
+   const config_unique = {
+     type: 'doughnut',
+     data: data_unique,
+   };
+   const unique_stats = new Chart(ctx_unique, config_unique);
+   </script>
+      </div>
+      <div style="width: 500px; height: 500px; margin-top: 50px;">
+   <h3 align="center">Solved domains</h3>
+   <canvas id="solved-domains" width="100" height="100"></canvas>
+   <script>
+   const ctx_solved = document.getElementById('solved-domains').getContext('2d');
+   const data_solved = {
+     labels: [
+       'solved',
+       'hashed'
+     ],
+     datasets: [{
+       label: 'Solved domains',
+       data: [{{ total }} - {{ unsolved }}, {{ unsolved }}],
+       backgroundColor: [
+         '#a3ebb1',
+         '#fd49a0',
+       ],
+       hoverOffset: 4
+     }]
+   };
+   const config_solved = {
+     type: 'doughnut',
+     data: data_solved,
+   };
+   const solved_stats = new Chart(ctx_solved, config_solved);
+   </script>
+  </div>
+  </div>
+</div>
+{% endblock content %}

@@ -19,6 +19,7 @@
       <meta property="og:url" content="{{ request.build_absolute_uri }}" />
    </head>
    <body>
+        <script src="{% static '/js/charts.js' %}?v={{ COMMIT_HASH }}"></script>
         <div class="main">
              {% block header %}
                 {% include 'header.html' %}
