@@ -63,4 +63,5 @@ def update_blockchain():
                 bl = Block(id=b.id, domain=d, hash=b.hash)
                 bl.save()
         except Exception as e:
-            logging.exception(e)
+            # logging.exception(e)
+            pass
