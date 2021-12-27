@@ -1,5 +1,6 @@
 import binascii
 import json
+import logging
 
 from domain.models import Domain
 from .models import Block
@@ -61,5 +62,5 @@ def update_blockchain():
             except Block.DoesNotExist:
                 bl = Block(id=b.id, domain=d, hash=b.hash)
                 bl.save()
-        except:
-            pass
+        except Exception as e:
+            logging.exception(e)

@@ -8,7 +8,7 @@ from domain.models import Domain
 def key(request, key_id):
     b = unhexlify(key_id)
     blocks = alfis.Blocks.select().filter(pub_key=b)
-    domains = Domain.objects.filter(signing=b)
+    domains = alfis.Domains.select().filter(signing=b)
     if not blocks:
         raise Http404
     return render(
