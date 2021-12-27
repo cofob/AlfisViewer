@@ -3,7 +3,7 @@
 {% block content %}
     <h1>Domains:</h1>
     {% for domain in domains %}
-        <p><a href="/domain/{{ domain|get_domains_str }}"><code>{{ domain|get_domains_str }}</code></a></p>
+        <p><a href="/domain/{{ domain|get_domain_str }}"><code>{{ domain|get_domain_str }}</code></a></p>
     {% endfor %}
     <h1>Blocks:</h1>
     {% for block in blocks %}

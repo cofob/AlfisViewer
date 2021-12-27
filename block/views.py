@@ -54,7 +54,8 @@ def update_blockchain():
                 d = Domain.objects.get(hash=trans["identity"], zone=data["zone"])
             except Domain.DoesNotExist:
                 d = Domain(hash=trans["identity"], zone=data["zone"])
-                d.save()
+            d.signing = b.pub_key
+            d.save()
             try:
                 bl = Block.objects.get(id=b.id)
             except Block.DoesNotExist:
