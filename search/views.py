@@ -36,5 +36,6 @@ def index(request):
             "block_results": block_results,
             "domain_fullmatch": domain_fullmatch,
             "key": key,
+            "query": query
         },
     )
