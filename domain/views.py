@@ -1,6 +1,7 @@
 import json
 import re
 from domain.models import Domain
+from block.models import Block
 from django.http.response import Http404, HttpResponseRedirect
 from django.shortcuts import render
 from .utils import get_domain_hash
@@ -29,13 +30,36 @@ def domain(request, domain_id):
     d_lst = Domains.select().filter(identity=unhexlify(do.hash))
     for d in d_lst:
         data = json.loads(d.data)
-        data_str = json.dumps(data, indent=2).split("\n")
+        data_str = json.dumps(data, indent=2)
         if data["zone"] == z:
             return render(
                 request,
                 "domain/index.html",
                 context={"domain_obj": do, "domain_data": d, "data": data_str},
             )
+
+
+def domain_history(request, domain_id):
+    try:
+        r = pattern.findall(domain_id)[0]
+        d = r[0]
+        z = r[1]
+    except IndexError:
+        raise Http404
+    try:
+        if not d.startswith("<") and not d.endswith(">"):
+            do = get_domain_hash(d, z)
+        else:
+            d = d[1:-1]
+            do = Domain.objects.get(hash=d, zone=z)
+    except Domain.DoesNotExist:
+        raise Http404
+    b_lst = Block.objects.filter(domain=do)
+    return render(
+        request,
+        "domain/history.html",
+        context={"domain_obj": do, "blocks": b_lst},
+    )
 
 
 def domain_solve(request):
@@ -50,5 +74,5 @@ def domain_solve(request):
 
 def domain_list(request):
     page = int(request.GET.get("p", 0))
-    out = Domains.select()[page * 20 : (page + 1) * 20]
+    out = Domain.objects.all()[page * 20 : (page + 1) * 20]
     return render(request, "domain/list.html", context={"page": page, "list": out})

@@ -3,6 +3,7 @@
 {% block content %}
     <p>ID: {{ b.id }} <a href="/block/{{ b.id|incr }}">Next >></a></p>
     <p>Hash: {{ b.hash|hexlify }}</p>
+    <p>Date: {{ b.timestamp|to_date }}</p>
     <p>By: <a href="/key/{{ b.pub_key|hexlify }}">{{ b.pub_key|hexlify }}</a></p>
     {% if not origin %}
         <p>Prev hash: <a href="/block/{{ b.prev_block_hash|hexlify }}">{{ b.prev_block_hash|hexlify }}</a></p>
@@ -14,13 +15,11 @@
             <p>Type: transaction</p>
             <p>Domain: <a href="/domain/{{ transaction.identity|get_domain }}">{{ transaction.identity|get_domain }}</a></p>
         {% endif %}
-        <p>Raw transaction:</p>
+        <h3>Raw transaction:</h3>
         <div class="raw">
-            <code>
-                {% for line in raw %}
-                        {{ line }}<br>
-                {% endfor %}
-            </code>
+            <pre><code>
+{{ raw }}
+            </code></pre>
         </div>
     {% else %}
         <p>Type: <a href="/block/{{ bp.id }}">signing</a></p>

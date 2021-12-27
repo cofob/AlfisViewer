@@ -6,10 +6,11 @@
 <p>Zone: {{ domain_obj.zone }}</p>
 <p>Hashed: {{ domain_obj.hash }}</p>
 <p>Solved: {% if domain_obj.real_domain %}{{ domain_obj.real_domain }}{% else %}Domain not solved. <a href="/domain/solve">Solve.</a>{% endif %}</p>
+<p>Mined in: {{ domain_data.timestamp|to_date }}</p>
+<p>Expires in: {{ domain_data.timestamp|add_year|to_date }} {% if domain_data|is_expired %}<b>Domain expired</b>{% endif %}</p>
+<p><a href="/domain/{{ domain_obj|get_domain_str }}/history">Record history</a></p>
 <h3>Raw data:</h3>
-<code>
-    {% for line in data %}
-        <p>{{ line }}</p>
-    {% endfor %}
-</code>
+<pre><code>
+{{ data }}
+</code></pre>
 {% endblock content %}

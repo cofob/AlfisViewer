@@ -2,6 +2,8 @@ import binascii
 
 from django import template
 from domain.models import Domain
+from datetime import datetime
+from time import time
 
 register = template.Library()
 
@@ -54,3 +56,19 @@ def incr(i):
 @register.filter
 def decr(i):
     return i - 1
+
+
+@register.filter
+def to_date(timestamp):
+    dt_object = datetime.fromtimestamp(timestamp)
+    return dt_object.date()
+
+
+@register.filter
+def add_year(timestamp):
+    return timestamp+31556926
+
+
+@register.filter
+def is_expired(domain):
+    return (domain.timestamp+31556926) < time()

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% block content %}
+<h1>Domain history:</h1>
+{% for block in blocks %}
+    <code><a href="/block/{{ block.id }}">{{ block.hash|hexlify }}</a></code><br>
+{% endfor %}
+{% endblock content %}

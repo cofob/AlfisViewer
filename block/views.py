@@ -2,6 +2,7 @@ import binascii
 import json
 
 from domain.models import Domain
+from .models import Block
 from django.shortcuts import render
 from django.http.response import Http404
 import alfis_connector as alfis
@@ -24,7 +25,7 @@ def block(request, block_id):
         try:
             context["transaction"] = json.loads(b.transaction)
             context["transaction"]["data"] = json.loads(context["transaction"]["data"])
-            context["raw"] = json.dumps(context["transaction"], indent=2).split("\n")
+            context["raw"] = json.dumps(context["transaction"], indent=2)
             if context["transaction"].get("class") != "origin":
                 context["d"] = Domain.objects.get(
                     hash=context["transaction"]["identity"],
@@ -54,5 +55,10 @@ def update_blockchain():
             except Domain.DoesNotExist:
                 d = Domain(hash=trans["identity"], zone=data["zone"])
                 d.save()
+            try:
+                bl = Block.objects.get(id=b.id)
+            except Block.DoesNotExist:
+                bl = Block(id=b.id, domain=d, hash=b.hash)
+                bl.save()
         except:
             pass
