@@ -4,12 +4,16 @@ import json
 from domain.models import Domain
 from .models import Block
 from django.shortcuts import render
-from django.http.response import Http404
+from django.http.response import Http404, HttpResponseRedirect
 import alfis_connector as alfis
 
 
 def block_list(request):
-    page = int(request.GET.get("p", 0))
+    page = int(request.GET.get("p", -1))
+    if page < 0:
+        return HttpResponseRedirect("/block?p=%s" % str(int(alfis.get_block_count()/20)))
+    if page > int(alfis.get_block_count()/20):
+        return HttpResponseRedirect("/block?p=%s" % '0')
     out = alfis.Blocks.select()[page * 20 : (page + 1) * 20]
     return render(request, "block/list.html", context={"page": page, "list": out})
 

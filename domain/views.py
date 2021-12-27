@@ -1,5 +1,7 @@
 import json
 import re
+
+import alfis_connector
 from domain.models import Domain
 from block.models import Block
 from django.http.response import Http404, HttpResponseRedirect
@@ -73,6 +75,10 @@ def domain_solve(request):
 
 
 def domain_list(request):
-    page = int(request.GET.get("p", 0))
+    page = int(request.GET.get("p", -1))
+    if page < 0:
+        return HttpResponseRedirect("/domain?p=%s" % str(int(alfis_connector.get_domain_count()/20)))
+    if page > int(alfis_connector.get_domain_count()/20):
+        return HttpResponseRedirect("/domain?p=%s" % '0')
     out = Domain.objects.all()[page * 20 : (page + 1) * 20]
     return render(request, "domain/list.html", context={"page": page, "list": out})
