@@ -13,12 +13,7 @@
     {% if domain_results %}
         <h1>Domains:</h1>
         {% for res in domain_results %}
-            {% if res.real_domain %}
-                {{ res.real_domain }}
-            {% else %}
-                <{{ res.hash }}>
-            {% endif %}.{{ res.zone }}
-            <p>{{ res }}</p>
+            <p><a href="/domain/{{ res|get_domain_str }}">{{ res|get_domain_str }}</a></p>
         {% endfor %}
     {% endif %}
     {% if block_results %}

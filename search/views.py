@@ -12,11 +12,12 @@ def index(request):
     except:
         domain_fullmatch = None
     domain_results = []
-    domain_results += Domain.objects.filter(hash=query.upper())[:20]
-    domain_results += Domain.objects.filter(real_domain=query.lower())[:20]
-    domain_results = domain_results[:20]
+    domain_results += Domain.objects.filter(hash__contains=query.upper())[:40]
+    domain_results += Domain.objects.filter(real_domain__contains=query.lower())[:40]
+    domain_results += Domain.objects.filter(zone__contains=query.lower())[:40]
+    domain_results = domain_results[:40]
     try:
-        block_results = Blocks.select().filter(hash=unhexlify(query))[:20]
+        block_results = Blocks.select().filter(hash=unhexlify(query))[:40]
     except:
         block_results = []
     try:
