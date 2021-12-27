@@ -2,11 +2,12 @@
 {% load common_tags %}
 {% block content %}
 <h1>Domain list</h1>
-<p><a href="/domain?p={{ page|incr }}">Next >></a></p>
-<p><a href="/domain?p={{ page|decr }}"><< Prev</a></p>
+<p><a href="/domain?p={{ page|decr }}"><< </a><a href="/domain?p={{ page|incr }}"> >></a></p>
 {% for item in list %}
     <p><a href="/domain/{{ item|get_domain_str }}"><code>{{ item|get_domain_str }}</code></a></p>
 {% endfor %}
-<p><a href="/domain?p={{ page|incr }}">Next >></a></p>
-<p><a href="/domain?p={{ page|decr }}"><< Prev</a></p>
+<p><a href="/domain?p={{ page|decr }}"><< </a><a href="/domain?p={{ page|incr }}"> >></a></p>
 {% endblock content %}
+{% block script %}
+<script>set_tab('domain')</script>
+{% endblock script %}

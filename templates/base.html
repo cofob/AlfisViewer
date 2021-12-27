@@ -8,8 +8,10 @@
 <!--       TODO: add everywhere title and description-->
       <title>AlfisViewer</title>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<!--      <link rel="stylesheet" href="{% static '/css/style.css' %}?v={{ COMMIT_HASH }}">-->
-<!--      <link rel="shortcut icon" href="{% static '/favicon.ico' %}?v={{ COMMIT_HASH }}">-->
+      <link rel="stylesheet" href="{% static '/css/bulma.css' %}?v={{ COMMIT_HASH }}">
+      <link rel="stylesheet" href="{% static '/css/highlight.css' %}?v={{ COMMIT_HASH }}">
+      <link rel="stylesheet" href="{% static '/css/style.css' %}?v={{ COMMIT_HASH }}">
+      <link rel="shortcut icon" href="{% static '/favicon.ico' %}?v={{ COMMIT_HASH }}">
       <meta property="og:type" content="website"/>
       <meta property="og:locale" content="ru_RU">
       <meta property="og:site_name" content="alfis viewer">
@@ -17,15 +19,24 @@
       <meta property="og:url" content="{{ request.build_absolute_uri }}" />
    </head>
    <body>
-         {% block header %}
-            {% include 'header.html' %}
-         {% endblock header %}
-
-         {% block content %}<p>base</p>{% endblock content %}
-
-         {% block footer %}
-            {% include 'footer.html' %}
-         {% endblock footer %}
+        <div class="main">
+             {% block header %}
+                {% include 'header.html' %}
+             {% endblock header %}
+             <div class="tab row page">
+                 <div class="content">
+                    {% block content %}<p>base</p>{% endblock content %}
+                    {% block footer %}
+                       {% include 'footer.html' %}
+                    {% endblock footer %}
+                 </div>
+             </div>
+        </div>
+        <script src="{% static '/js/script.js' %}?v={{ COMMIT_HASH }}"></script>
+        <script src="{% static '/js/highlight.js' %}?v={{ COMMIT_HASH }}"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
+        {% block script %}
+        {% endblock script %}
    </body>
 </html>
 

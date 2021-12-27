@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-    <p><a href="/block/">All blocks</a></p>
-    <p><a href="/domain/">All domains</a></p>
-    <p><a href="/domain/solve">Domain solver</a></p>
-<!--    <p>You can download <a href="/blockchain.db">alfis blockchain</a> or our <a href="/db.sqlite3">solved db</a>.</p>-->
-    <p><a href="https://sr.ht/~cofob/AlfisViewer">Source code.</a> Made by cofob.</p>
+    <h1>Welcome to the alfis blockchain viewer!</h1>
 {% endblock content %}
+{% block script %}
+<script>set_tab('main')</script>
+{% endblock script %}

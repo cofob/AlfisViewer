@@ -10,3 +10,6 @@
         <p><a href="/block/{{ block.id }}"><code>{{ block.hash|hexlify }}</code></a></p>
     {% endfor %}
 {% endblock content %}
+{% block script %}
+<script>set_tab('block')</script>
+{% endblock script %}

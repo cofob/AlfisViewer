@@ -6,3 +6,6 @@
     <code><a href="/block/{{ block.id }}">{{ block.hash|hexlify }}</a></code><br>
 {% endfor %}
 {% endblock content %}
+{% block script %}
+<script>set_tab('domain')</script>
+{% endblock script %}
