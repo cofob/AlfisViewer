@@ -1,6 +1,5 @@
 import binascii
 import json
-import logging
 
 from domain.models import Domain
 from .models import Block
@@ -55,8 +54,8 @@ def update_blockchain():
                 d = Domain.objects.get(hash=trans["identity"], zone=data["zone"])
             except Domain.DoesNotExist:
                 d = Domain(hash=trans["identity"], zone=data["zone"])
-            d.signing = b.pub_key
-            d.save()
+                d.save()
+            # d.signing = b.pub_key
             try:
                 bl = Block.objects.get(id=b.id)
             except Block.DoesNotExist:

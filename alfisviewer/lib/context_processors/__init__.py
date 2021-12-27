@@ -2,6 +2,7 @@ from django.conf import settings
 import alfis_connector as alfis
 from time import time
 from block.views import update_blockchain
+import threading
 
 
 settings.BLOCKCHAIN_LAST_UPDATE = 0
@@ -22,6 +23,7 @@ def domain_count(request):
 def update_scheduler(request):
     t = int(time())
     if settings.BLOCKCHAIN_LAST_UPDATE + 30 <= t:
-        update_blockchain()
+        thread = threading.Thread(target=update_blockchain)
+        thread.start()
         settings.BLOCKCHAIN_LAST_UPDATE = t
     return {"UPDATE_IN": settings.BLOCKCHAIN_LAST_UPDATE - t + 30}
