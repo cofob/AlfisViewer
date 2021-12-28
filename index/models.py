@@ -15,7 +15,7 @@ class Error(models.Model):
 
     @staticmethod
     def submit(exc):
-        e = Error(exception=''.join(traceback.format_exception(exc)))
+        e = Error(exception="".join(traceback.format_exception(exc)))
         e.save()
         return e.id
 

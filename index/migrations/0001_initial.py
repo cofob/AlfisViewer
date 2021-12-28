@@ -9,16 +9,23 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Error',
+            name="Error",
             fields=[
-                ('id', models.CharField(default=index.models.gen_id, max_length=8, primary_key=True, serialize=False)),
-                ('exception', models.TextField()),
-                ('timestamp', models.IntegerField(default=time.time)),
+                (
+                    "id",
+                    models.CharField(
+                        default=index.models.gen_id,
+                        max_length=8,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("exception", models.TextField()),
+                ("timestamp", models.IntegerField(default=time.time)),
             ],
         ),
     ]

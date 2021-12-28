@@ -16,9 +16,9 @@ def handler404(request, exception):
         context={
             "title": "Error 404",
             "description": "Page not found",
-            "error_id": Error.submit(exception)
+            "error_id": Error.submit(exception),
         },
-        status=404
+        status=404,
     )
 
 
@@ -32,7 +32,7 @@ def handler500(request):
         context={
             "title": "Error 500",
             "description": "Something happened...",
-            "error_id": Error.submit(value)
+            "error_id": Error.submit(value),
         },
-        status=500
+        status=500,
     )

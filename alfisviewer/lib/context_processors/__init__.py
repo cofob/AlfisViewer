@@ -13,7 +13,10 @@ def commit_hash(request):
 
 
 def block_count(request):
-    return {"BLOCK_COUNT": str(alfis.get_block_count()), "BLOCK_PAGE": str(int(alfis.get_block_count()/20))}
+    return {
+        "BLOCK_COUNT": str(alfis.get_block_count()),
+        "BLOCK_PAGE": str(int(alfis.get_block_count() / 20)),
+    }
 
 
 def domain_count(request):

@@ -22,5 +22,5 @@ if settings.DEBUG:
 admin.site.site_header = "AlfisViewer admin" + (" debug" if settings.DEBUG else "")
 admin.site.site_title = "AlfisViewer admin" + (" debug" if settings.DEBUG else "")
 
-handler404 = 'alfisviewer.views.handler404'
-handler500 = 'alfisviewer.views.handler500'
+handler404 = "alfisviewer.views.handler404"
+handler500 = "alfisviewer.views.handler500"

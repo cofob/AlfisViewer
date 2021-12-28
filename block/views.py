@@ -11,11 +11,22 @@ import alfis_connector as alfis
 def block_list(request):
     page = int(request.GET.get("p", -1))
     if page < 0:
-        return HttpResponseRedirect("/block/?p=%s" % str(int(alfis.get_block_count()/20)))
-    if page > int(alfis.get_block_count()/20):
-        return HttpResponseRedirect("/block/?p=%s" % '0')
+        return HttpResponseRedirect(
+            "/block/?p=%s" % str(int(alfis.get_block_count() / 20))
+        )
+    if page > int(alfis.get_block_count() / 20):
+        return HttpResponseRedirect("/block/?p=%s" % "0")
     out = alfis.Blocks.select()[page * 20 : (page + 1) * 20]
-    return render(request, "block/list.html", context={"page": page, "list": out, 'title': 'All blocks', 'description': 'View block list'})
+    return render(
+        request,
+        "block/list.html",
+        context={
+            "page": page,
+            "list": out,
+            "title": "All blocks",
+            "description": "View block list",
+        },
+    )
 
 
 def block(request, block_id):
@@ -24,7 +35,7 @@ def block(request, block_id):
         b = alfis.Blocks.get_or_none(hash=binascii.unhexlify(block_id))
     if not b:
         raise Http404
-    context = {"b": b, 'title': f'Block {b.id}', 'description': 'View this block data'}
+    context = {"b": b, "title": f"Block {b.id}", "description": "View this block data"}
     if b.transaction is not None:
         try:
             context["transaction"] = json.loads(b.transaction)
