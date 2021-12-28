@@ -93,7 +93,10 @@ def domain_solve(request):
 
 
 def domain_list(request):
-    page = int(request.GET.get("p", -1))
+    try:
+        page = int(request.GET.get("p", -1))
+    except ValueError:
+        return HttpResponseRedirect("/domain/")
     if page < 0:
         return HttpResponseRedirect(
             "/domain/?p=%s" % str(int(alfis_connector.get_domain_count() / 20))

@@ -9,7 +9,10 @@ import alfis_connector as alfis
 
 
 def block_list(request):
-    page = int(request.GET.get("p", -1))
+    try:
+        page = int(request.GET.get("p", -1))
+    except ValueError:
+        return HttpResponseRedirect("/block/")
     if page < 0:
         return HttpResponseRedirect(
             "/block/?p=%s" % str(int(alfis.get_block_count() / 20))
