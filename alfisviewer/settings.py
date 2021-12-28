@@ -9,9 +9,10 @@ try:
         subprocess.check_output("git rev-parse --short HEAD".split(" "))
         .decode()
         .replace("\n", "")
+        .upper()
     )
 except FileNotFoundError:
-    COMMIT_HASH = token_hex(3)
+    COMMIT_HASH = token_hex(3).upper()
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
