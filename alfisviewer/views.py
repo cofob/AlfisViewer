@@ -8,7 +8,8 @@ log = get_view_logger(__name__)
 
 
 def handler404(request, exception):
-    log.exception(exception)
+    typ, val, tb = sys.exc_info()
+    log.exception(tb)
 
     return render(
         request,
@@ -16,15 +17,15 @@ def handler404(request, exception):
         context={
             "title": "Error 404",
             "description": "Page not found",
-            "error_id": Error.submit(exception),
+            "error_id": Error.submit(typ, val, tb),
         },
         status=404,
     )
 
 
 def handler500(request):
-    type_, value, tr = sys.exc_info()
-    log.exception(tr)
+    typ, val, tb = sys.exc_info()
+    log.exception(tb)
 
     return render(
         request,
@@ -32,7 +33,7 @@ def handler500(request):
         context={
             "title": "Error 500",
             "description": "Something happened...",
-            "error_id": Error.submit(value),
+            "error_id": Error.submit(typ, val, tb),
         },
         status=500,
     )

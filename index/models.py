@@ -14,8 +14,8 @@ class Error(models.Model):
     timestamp = models.IntegerField(default=time.time)
 
     @staticmethod
-    def submit(exc):
-        e = Error(exception="".join(traceback.format_exception(exc)))
+    def submit(typ, val, tb):
+        e = Error(exception="".join(traceback.format_exception(typ, val, tb)))
         e.save()
         return e.id
 
