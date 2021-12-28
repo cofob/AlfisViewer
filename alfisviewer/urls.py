@@ -13,7 +13,7 @@ urlpatterns = [
     path("domain/", include("domain.urls")),
     path("key/", include("key.urls")),
     path("blockchain.db", serve_file("blockchain.db", "application/x-sqlite3")),
-    path("db.sqlite3", serve_file("db.sqlite3", "application/x-sqlite3")),
+    path("favicon.ico", serve_file("favicon.ico", "image/x-icon")),
 ]
 
 if settings.DEBUG:
@@ -21,3 +21,6 @@ if settings.DEBUG:
 
 admin.site.site_header = "AlfisViewer admin" + (" debug" if settings.DEBUG else "")
 admin.site.site_title = "AlfisViewer admin" + (" debug" if settings.DEBUG else "")
+
+handler404 = 'alfisviewer.views.handler404'
+handler500 = 'alfisviewer.views.handler500'

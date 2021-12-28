@@ -11,7 +11,8 @@ from binascii import unhexlify
 
 def index(request):
     last_block = alfis.get_latest_block()
-    return render(request, "index/index.html", context={"last_block": last_block})
+    return render(request, "index/index.html", context={"last_block": last_block, "title": "Alfis blockchain viewer",
+            "description": "Welcome to the Alfis blockchain viewer"})
 
 
 def stats(request):
@@ -56,4 +57,6 @@ def stats(request):
     return render(request, "index/stats.html", context={'zones': str(zone_data), 'week': str(week_data),
                                                         'static_domains': str([static_domains, moving_domains]),
                                                         'same': same_domains, 'empty': empty_domains, 'total':
-                                                        total_domains, 'unsolved': unsolved_domains})
+                                                        total_domains, 'unsolved': unsolved_domains,
+                                                        "title": 'Alfis blockchain statistics',
+                                                        'description': 'View some interesting stats'})

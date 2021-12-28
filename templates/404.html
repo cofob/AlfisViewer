@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% block content %}
+    <h1>404</h1>
+    <p>Hrm... Maybe you want visit <a href="/">main page?</a> If you think this is an error, report to the administrator <a href="mailto:c@cofob.ru">c@cofob.ru</a>.</p>
+    <p>Error ID: {{ error_id }} (Include this in report)</p>
+{% endblock content %}

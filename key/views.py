@@ -12,5 +12,5 @@ def key(request, key_id):
     if not blocks:
         raise Http404
     return render(
-        request, "key/index.html", context={"blocks": blocks, "domains": domains}
+        request, "key/index.html", context={"blocks": blocks, "domains": domains, 'title': 'Key view', 'description': 'View key domain and blocks'}
     )

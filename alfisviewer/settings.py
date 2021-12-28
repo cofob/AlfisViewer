@@ -2,6 +2,7 @@ from pathlib import Path
 from json import load as json_load
 import subprocess
 from secrets import token_hex
+import os
 
 try:
     COMMIT_HASH = (
@@ -19,6 +20,44 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 with open("config.json", "r") as file:
     CONFIG = json_load(file)
+
+
+if not os.path.isdir(str(BASE_DIR / "logs")):
+    os.mkdir(str(BASE_DIR / "logs"))
+
+LOGGING = CONFIG.get(
+    "LOGGING",
+    {
+        "version": 1,
+        "disable_existing_loggers": False,
+        "formatters": {
+            "verbose": {
+                "format": "{levelname} {asctime} {module} {message}",
+                "style": "{",
+            },
+            "simple": {
+                "format": "{levelname} {message}",
+                "style": "{",
+            },
+        },
+        "handlers": {
+            "file": {
+                "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
+                "class": "logging.FileHandler",
+                "filename": str(BASE_DIR / "logs" / "django.txt"),
+                "formatter": "verbose",
+            },
+            "console": {"class": "logging.StreamHandler", "formatter": "simple"},
+        },
+        "loggers": {
+            "django": {
+                "handlers": ["file", "console"],
+                "level": "WARN",
+                "propagate": True,
+            },
+        },
+    },
+)
 
 
 # Quick-start development settings - unsuitable for production
