@@ -32,7 +32,24 @@
                  </div>
              </div>
         </div>
+
+        <div class="notification mini is-warning is-hidden" id="notification_warning">
+            <button class="delete" id="warning_close"></button>
+            <p id="warning_text"></p>
+        </div>
+
+        <div class="notification mini is-danger is-hidden" id="notification_error">
+            <button class="delete" id="error_close"></button>
+            <p id="error_text"></p>
+        </div>
+
+        <div class="notification mini is-success is-hidden" id="notification_success">
+            <button class="delete" id="success_close"></button>
+            <p id="success_text"></p>
+        </div>
+
         <script>hljs.initHighlightingOnLoad();</script>
+        {% if script %}<script>{{ script|safe }}</script>{% endif %}
         {% block script %}
         {% endblock script %}
    </body>

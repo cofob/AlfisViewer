@@ -83,13 +83,20 @@ def domain_solve(request):
                 reverse("domain", args=["%s.%s" % (d.real_domain, d.zone)])
             )
         except Exception as e:
+            script = """
+            showError('Not found'); 
+            if (window.history.replaceState) {
+                window.history.replaceState({}, null, '/domain/solve');
+            }
+            """
             return render(
                 request,
                 "domain/solve.html",
                 context={
                     "title": "Solve domain",
                     "description": "You can contribute to our domain database",
-                    "error": True,
+                    "script": script,
+                    "domain": request.GET.get("domain")
                 },
             )
     return render(

@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% load common_tags %}
 {% block content %}
+    <h1>Block</h1>
     <p>ID: {{ b.id }} <a href="{% url 'block' b.id|incr %}">Next >></a></p>
     <p>Hash: {{ b.hash|hexlify }}</p>
     <p>Date: {{ b.timestamp|to_date }}</p>

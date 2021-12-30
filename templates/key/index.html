@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% load common_tags %}
 {% block content %}
-    <h1>Domains:</h1>
+    <h1>Key</h1>
+    <h2>Domains:</h2>
     {% for domain in domains %}
         <p><a href="{% url 'domain' domain|get_domains_str %}"><code>{{ domain|get_domains_str }}</code></a></p>
     {% endfor %}
-    <h1>Blocks:</h1>
+    <h2>Blocks:</h2>
     {% for block in blocks %}
         <p><a href="{% url 'block' block.id %}"><code>{{ block.hash|hexlify }}</code></a></p>
     {% endfor %}

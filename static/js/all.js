@@ -25,3 +25,48 @@ function set_tab(name){
     let tab = document.querySelector("#tab-"+name);
     tab.classList.add("is-active");
 }
+
+function showWarning(text) {
+    var warning = document.getElementById("notification_warning");
+    var message = document.getElementById("warning_text");
+    message.innerHTML = text;
+
+    warning.className = "notification mini is-warning";
+    var button = document.getElementById("warning_close");
+    button.onclick = function() {
+        message.value = "";
+        warning.className = "notification mini is-warning is-hidden";
+    }
+    setTimeout(button.onclick, 5000);
+}
+
+function showError(text) {
+    var warning = document.getElementById("notification_error");
+    var message = document.getElementById("error_text");
+    message.innerHTML = text;
+
+    warning.className = "notification mini is-danger";
+    var button = document.getElementById("error_close");
+    button.onclick = function() {
+        message.value = "";
+        warning.className = "notification mini is-danger is-hidden";
+    }
+}
+
+function showSuccess(text) {
+    var warning = document.getElementById("notification_success");
+    var message = document.getElementById("success_text");
+    message.innerHTML = text;
+
+    warning.className = "notification mini is-success";
+    var button = document.getElementById("success_close");
+    button.onclick = function() {
+        message.value = "";
+        warning.className = "notification mini is-success is-hidden";
+    }
+}
+
+function css(element, style) {
+    for (const property in style)
+        element.style[property] = style[property];
+}

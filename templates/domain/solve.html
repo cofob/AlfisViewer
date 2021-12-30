@@ -3,11 +3,17 @@
 {% block content %}
 <h1>Domain solve</h1>
 <form>
-    <input name="domain" required>
-    <button type="submit">Submit</button>
-    {% if error %}
-        <h1>Not found!</h1>
-    {% endif %}
+    <div class="field">
+        <label class="label">Domain</label>
+        <div class="control">
+            <input name="domain" class="input" required placeholder="Example: cofob.ygg" value="{{ domain }}">
+        </div>
+    </div>
+    <div class="field is-grouped">
+        <div class="control">
+            <button type="submit" class="button is-link">Submit</button>
+        </div>
+    </div>
 </form>
 {% endblock content %}
 {% block script %}
