@@ -96,7 +96,7 @@ def domain_solve(request):
                     "title": "Solve domain",
                     "description": "You can contribute to our domain database",
                     "script": script,
-                    "domain": request.GET.get("domain")
+                    "domain": request.GET.get("domain"),
                 },
             )
     return render(
