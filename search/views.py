@@ -12,7 +12,15 @@ def index(request):
     except:
         domain_fullmatch = None
     domain_results = []
-    domain_results += Domain.objects.filter(hash__contains=query.upper())[:40]
+    try:
+        domain_results += Domain.objects.filter(
+            hash__contains=query.upper().split(".")[0].replace("<", "").replace(">", "")
+        )[:40]
+    except:
+        pass
+    domain_results += Domain.objects.filter(
+        hash__contains=query.upper().replace("<", "").replace(">", "")
+    )[:40]
     domain_results += Domain.objects.filter(real_domain__contains=query.lower())[:40]
     domain_results += Domain.objects.filter(zone__contains=query.lower())[:40]
     domain_results = domain_results[:40]
@@ -24,7 +32,8 @@ def index(request):
         unhexlify(query)
         if len(query) != 64:
             key = None
-        key = query
+        else:
+            key = query
     except Exception as e:
         print(e)
         key = None

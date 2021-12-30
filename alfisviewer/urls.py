@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
-from django.http.response import FileResponse
 from .utils import serve_file
 
 urlpatterns = [
@@ -12,7 +11,11 @@ urlpatterns = [
     path("search/", include("search.urls")),
     path("domain/", include("domain.urls")),
     path("key/", include("key.urls")),
-    path("blockchain.db", serve_file("blockchain.db", "application/x-sqlite3")),
+    path(
+        "blockchain.db",
+        serve_file("blockchain.db", "application/x-sqlite3"),
+        name="blockchain",
+    ),
     path("favicon.ico", serve_file("favicon.ico", "image/x-icon")),
 ]
 

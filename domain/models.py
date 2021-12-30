@@ -8,4 +8,8 @@ class Domain(models.Model):
     signing = models.BinaryField(max_length=64, null=True)
 
     def __str__(self):
-        return (self.real_domain if self.real_domain else self.hash) + "." + self.zone
+        return (
+            (self.real_domain if self.real_domain else ("<" + self.hash + ">"))
+            + "."
+            + self.zone
+        )

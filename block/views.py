@@ -1,6 +1,6 @@
 import binascii
 import json
-
+from django.urls import reverse
 from domain.models import Domain
 from .models import Block
 from django.shortcuts import render
@@ -12,13 +12,13 @@ def block_list(request):
     try:
         page = int(request.GET.get("p", -1))
     except ValueError:
-        return HttpResponseRedirect("/block/")
+        return HttpResponseRedirect(reverse("block_list"))
     if page < 0:
         return HttpResponseRedirect(
-            "/block/?p=%s" % str(int(alfis.get_block_count() / 20))
+            reverse("block_list") + "?p=%s" % str(int(alfis.get_block_count() / 20))
         )
     if page > int(alfis.get_block_count() / 20):
-        return HttpResponseRedirect("/block/?p=%s" % "0")
+        return HttpResponseRedirect(reverse("block_list") + "?p=%s" % "0")
     out = alfis.Blocks.select()[page * 20 : (page + 1) * 20]
     return render(
         request,
@@ -73,12 +73,10 @@ def update_blockchain():
             except Domain.DoesNotExist:
                 d = Domain(hash=trans["identity"], zone=data["zone"])
                 d.save()
-            # d.signing = b.pub_key
             try:
                 bl = Block.objects.get(id=b.id)
             except Block.DoesNotExist:
                 bl = Block(id=b.id, domain=d, hash=b.hash)
                 bl.save()
-        except Exception as e:
-            # logging.exception(e)
+        except:
             pass

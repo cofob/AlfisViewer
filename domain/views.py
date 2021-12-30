@@ -1,6 +1,6 @@
 import json
 import re
-
+from django.urls import reverse
 import alfis_connector
 from domain.models import Domain
 from block.models import Block
@@ -79,9 +79,19 @@ def domain_solve(request):
     if request.GET.get("domain"):
         try:
             d = get_domain_hash(request.GET.get("domain"))
-            return HttpResponseRedirect("/domain/%s.%s" % (d.real_domain, d.zone))
+            return HttpResponseRedirect(
+                reverse("domain", args=["%s.%s" % (d.real_domain, d.zone)])
+            )
         except Exception as e:
-            return render(request, "domain/solve.html", context={"error": True})
+            return render(
+                request,
+                "domain/solve.html",
+                context={
+                    "title": "Solve domain",
+                    "description": "You can contribute to our domain database",
+                    "error": True,
+                },
+            )
     return render(
         request,
         "domain/solve.html",
@@ -96,13 +106,14 @@ def domain_list(request):
     try:
         page = int(request.GET.get("p", -1))
     except ValueError:
-        return HttpResponseRedirect("/domain/")
+        return HttpResponseRedirect(reverse("domain_list"))
     if page < 0:
         return HttpResponseRedirect(
-            "/domain/?p=%s" % str(int(alfis_connector.get_domain_count() / 20))
+            reverse("domain_list")
+            + "?p=%s" % str(int(alfis_connector.get_domain_count() / 20))
         )
     if page > int(alfis_connector.get_domain_count() / 20):
-        return HttpResponseRedirect("/domain/?p=%s" % "0")
+        return HttpResponseRedirect(reverse("domain_list") + "?p=%s" % "0")
     out = Domain.objects.all()[page * 20 : (page + 1) * 20]
     return render(
         request,

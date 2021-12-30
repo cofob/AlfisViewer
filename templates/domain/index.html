@@ -2,13 +2,13 @@
 {% load common_tags %}
 {% block content %}
 <h1>Domain</h1>
-<p>Owner: <a href="/key/{{ domain_data.signing|hexlify }}">{{ domain_data.signing|hexlify }}</a></p>
+<p>Owner: <a href="{% url 'key' domain_data.signing|hexlify %}">{{ domain_data.signing|hexlify }}</a></p>
 <p>Zone: {{ domain_obj.zone }}</p>
 <p>Hashed: {{ domain_obj.hash }}</p>
-<p>Solved: {% if domain_obj.real_domain %}{{ domain_obj.real_domain }}{% else %}Domain not solved. <a href="/domain/solve">Solve.</a>{% endif %}</p>
+<p>Solved: {% if domain_obj.real_domain %}{{ domain_obj.real_domain }}{% else %}Domain not solved. <a href="{% url 'domain_solve' %}">Solve.</a>{% endif %}</p>
 <p>Mined in: {{ domain_data.timestamp|to_date }}</p>
 <p>Expires in: {{ domain_data.timestamp|add_year|to_date }} {% if domain_data|is_expired %}<b>Domain expired</b>{% endif %}</p>
-<p><a href="/domain/{{ domain_obj|get_domain_str }}/history">Record history</a></p>
+<p><a href="{% url 'domain_history' domain_obj %}">Record history</a></p>
 <h3>Raw data:</h3>
 <pre><code>
 {{ data }}

@@ -2,11 +2,11 @@
 {% load common_tags %}
 {% block content %}
 <h1>Blocks</h1>
-<p><a href="/block?p={{ page|incr }}"><< </a><a href="/block?p={{ page|decr }}"> >></a></p>
+<p><a href="{% url 'block_list' %}?p={{ page|incr }}"><< </a><a href="{% url 'block_list' %}?p={{ page|decr }}"> >></a></p>
 {% for item in list %}
-    <p><a href="/block/{{ item }}"><code>{{ item.id }}. {{ item.hash|hexlify }}</code></a></p>
+    <p><a href="{% url 'block' item.id %}"><code>{{ item.id }}. {{ item.hash|hexlify }}</code></a></p>
 {% endfor %}
-<p><a href="/block?p={{ page|incr }}"><< </a><a href="/block?p={{ page|decr }}"> >></a></p>
+<p><a href="{% url 'block_list' %}?p={{ page|incr }}"><< </a><a href="{% url 'block_list' %}?p={{ page|decr }}"> >></a></p>
 {% endblock content %}
 {% block script %}
 <script>set_tab('block')</script>
