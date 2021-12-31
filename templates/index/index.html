@@ -1,8 +1,11 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
-    <h1>Welcome to the alfis blockchain viewer!</h1>
-    <p>Alfis <a href="{% url 'stats' %}">statistics</a>.</a></p>
-        <p>You can download latest <a href="{% url 'blockchain' %}">blockchain</a>.</p>
+    <h1>{% trans "Welcome to the alfis blockchain viewer!" %}</h1>
+    {% url 'stats' as stats_url %}
+    <p>{% blocktrans with url=stats_url %}Alfis <a href="{{ url }}">statistics</a>.{% endblocktrans %}</p>
+    {% url 'blockchain' as blockchain_url %}
+    <p>{% blocktrans with url=stats_url %}You can download latest <a href="{{ url }}">blockchain</a>.{% endblocktrans %}</p>
 {% endblock content %}
 {% block script %}
 <script>

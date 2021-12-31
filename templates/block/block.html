@@ -1,29 +1,30 @@
 {% extends 'base.html' %}
 {% load common_tags %}
+{% load i18n %}
 {% block content %}
-    <h1>Block</h1>
-    <p>ID: {{ b.id }} <a href="{% url 'block' b.id|incr %}">Next >></a></p>
-    <p>Hash: {{ b.hash|hexlify }}</p>
-    <p>Date: {{ b.timestamp|to_date }}</p>
-    <p>By: <a href="{% url 'key' b.pub_key|hexlify %}">{{ b.pub_key|hexlify }}</a></p>
+    <h1>{% trans "Block" %}</h1>
+    <p>{% trans "ID" %}: {{ b.id }} <a href="{% url 'block' b.id|incr %}">{% trans "Next" %} >></a></p>
+    <p>{% trans "Hash" %}: {{ b.hash|hexlify }}</p>
+    <p>{% trans "Date" %}: {{ b.timestamp|to_date }}</p>
+    <p>{% trans "By" %}: <a href="{% url 'key' b.pub_key|hexlify %}">{{ b.pub_key|hexlify }}</a></p>
     {% if not origin %}
-        <p>Prev hash: <a href="{% url 'block' b.id|decr %}">{{ b.prev_block_hash|hexlify }}</a></p>
+        <p>{% trans "Prev hash" %}: <a href="{% url 'block' b.id|decr %}">{{ b.prev_block_hash|hexlify }}</a></p>
     {% endif %}
     {% if b.transaction %}
         {% if origin %}
-            <p>Type: origin</p>
+            <p>{% trans "Type" %}: {% trans "origin" %}</p>
         {% else %}
-            <p>Type: transaction</p>
-            <p>Domain: <a href="{% url 'domain' transaction.identity|get_domain %}">{{ transaction.identity|get_domain }}</a></p>
+            <p>{% trans "Type" %}: {% trans "transaction" %}</p>
+            <p>{% trans "Domain" %}: <a href="{% url 'domain' transaction.identity|get_domain %}">{{ transaction.identity|get_domain }}</a></p>
         {% endif %}
-        <h3>Raw transaction:</h3>
+        <h3>{% trans "Raw transaction" %}:</h3>
         <div class="raw">
             <pre><code>
 {{ raw }}
             </code></pre>
         </div>
     {% else %}
-        <p>Type: <a href="{% url 'block' bp.id %}">signing</a></p>
+        <p>{% trans "Type" %}: <a href="{% url 'block' bp.id %}">{% trans "signing" %}</a></p>
     {% endif %}
 {% endblock content %}
 {% block script %}

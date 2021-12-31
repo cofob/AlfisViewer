@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% block content %}
-<h1 align="center">Statistics</h1>
+<h1 align="center">{% trans "Statistics" %}</h1>
 <div style="display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
  <div style="width: 500px; height: 500px; margin-top: 50px;">
-   <h3 align="center">Zone popularity</h3>
+   <h3 align="center">{% trans "Zone popularity" %}</h3>
    <canvas id="zone-popularity" width="100" height="100"></canvas>
    <script>
    const ctx = document.getElementById('zone-popularity').getContext('2d');
@@ -46,7 +47,7 @@
    </script>
   </div>
   <div style="width: 500px; height: 500px; margin-top: 50px;">
-   <h3 align="center">Weekly blocks</h3>
+   <h3 align="center">{% trans "Weekly blocks" %}</h3>
    <canvas id="week-stats" width="100" height="100"></canvas>
    <script>
    const ctx_week = document.getElementById('week-stats').getContext('2d');
@@ -83,7 +84,7 @@
    </script>
   </div>
   <div style="width: 500px; height: 500px; margin-top: 50px;">
-   <h3 align="center">Static domains</h3>
+   <h3 align="center">{% trans "Static domains" %}</h3>
    <canvas id="static-domains" width="100" height="100"></canvas>
    <script>
    const ctx_static = document.getElementById('static-domains').getContext('2d');
@@ -110,7 +111,7 @@
    </script>
   </div>
   <div style="width: 500px; height: 500px; margin-top: 50px;">
-   <h3 align="center">Empty domains</h3>
+   <h3 align="center">{% trans "Empty domains" %}</h3>
    <canvas id="empty-domains" width="100" height="100"></canvas>
    <script>
    const ctx_empty = document.getElementById('empty-domains').getContext('2d');
@@ -137,7 +138,7 @@
    </script>
   </div>
       <div style="width: 500px; height: 500px; margin-top: 50px;">
-   <h3 align="center">Unique domains</h3>
+   <h3 align="center">{% trans "Unique domains" %}</h3>
    <canvas id="unique-domains" width="100" height="100"></canvas>
    <script>
    const ctx_unique = document.getElementById('unique-domains').getContext('2d');
@@ -164,7 +165,7 @@
    </script>
       </div>
       <div style="width: 500px; height: 500px; margin-top: 50px;">
-   <h3 align="center">Solved domains</h3>
+   <h3 align="center">{% trans "Solved domains" %}</h3>
    <canvas id="solved-domains" width="100" height="100"></canvas>
    <script>
    const ctx_solved = document.getElementById('solved-domains').getContext('2d');

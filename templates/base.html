@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 {% load static %}
 {% load common_tags %}
+{% load i18n %}
 {% spaceless %}
 <html lang="ru_RU">
    <head>
       <meta charset="UTF-8">
-      <title>{{ title|default:"My title" }} - Alfis</title>
+      {% trans title|default:"My title" as the_title %}
+      {% trans description|default:"My Cool Description" as the_description %}
+      <title>{{ the_title }} - Alfis</title>
       <meta name="viewport" content="width=device-width, initial-scale=1"/>
       <link rel="stylesheet" href="{% static '/css/all.css' %}?v={{ COMMIT_HASH }}">
       <link rel="shortcut icon" href="/favicon.ico?v={{ COMMIT_HASH }}">
       <meta property="og:type" content="website"/>
       <meta property="og:locale" content="ru_RU">
       <meta property="og:site_name" content="alfis viewer">
-      <meta property="og:title" content="AlfisViewer" />
+      <meta property="og:title" content="{{ the_title }} - Alfis" />
       <meta property="og:url" content="{{ request.build_absolute_uri }}" />
-      <meta property="og:title" content="{{ title|default:"My title" }} - Alfis" />
-      <meta property="og:description" content="{{ description|default:"My Cool Description" }}">
+      <meta property="og:title" content="{{ the_title }} - Alfis" />
+      <meta property="og:description" content="{{ the_description }}">
    </head>
    <body>
         <script src="{% static '/js/all.js' %}?v={{ COMMIT_HASH }}"></script>

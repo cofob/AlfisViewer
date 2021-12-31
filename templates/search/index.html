@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
 {% load common_tags %}
+{% load i18n %}
 {% block content %}
-    <h1>Search:</h1>
+    <h1>{% trans "Search" %}:</h1>
     {% if not domain_fullmatch and not domain_results and not block_results and not key %}
-        <h2>Not found</h2>
+        <h2>{% trans "Not found" %}</h2>
     {% endif %}
     {% if domain_fullmatch %}
-        <h2>Full match:</h2>
+        <h2>{% trans "Full match" %}:</h2>
         <p><code><a href="{% url 'domain' domain_id=domain_fullmatch %}">{{ domain_fullmatch }}</a></code></p>
     {% endif %}
     {% if domain_results %}
-        <h2>Domains:</h2>
+        <h2>{% trans "Domains" %}:</h2>
         {% for res in domain_results %}
             <p><code><a href="{% url 'domain' domain_id=res %}">{{ res|get_domain_str }}</a></code></p>
         {% endfor %}
     {% endif %}
     {% if block_results %}
-        <h2>Blocks:</h2>
+        <h2>{% trans "Blocks" %}:</h2>
         {% for res in block_results %}
             <p><code><a href="{% url 'block' res %}">{{ res.hash|hexlify }}</a></code></p>
         {% endfor %}
     {% endif %}
     {% if key %}
-        <h2>Key:</h2>
+        <h2>{% trans "Key" %}:</h2>
         <p><code><a href="{% url 'key' key %}">{{ key }}</a></code> Might by 404</p>
     {% endif %}
 {% endblock content %}
