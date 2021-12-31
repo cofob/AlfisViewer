@@ -7,8 +7,8 @@ from hashlib import sha256
 from json import dumps, loads
 from binascii import unhexlify
 from django.http.response import JsonResponse
-from django.conf import settings
 from django.utils import translation
+from django.conf import settings
 
 
 def index(request):
@@ -106,3 +106,21 @@ def stats(request):
             "description": "View some interesting stats",
         },
     )
+
+
+def set_lang(request, lang_code):
+    resp = {}
+    lang_code = lang_code.lower()
+    if len(lang_code) != 2:
+        return JsonResponse({'ok': False, 'error': 'Language code can be only 2 characters length.'})
+    if lang_code not in settings.LANGUAGE_CODES:
+        lang = "en"
+        resp['warn'] = 'Language not found, using default.'
+    else:
+        lang = lang_code
+    translation.activate(lang)
+    resp['ok'] = True
+    resp['lang'] = lang
+    response = JsonResponse(resp)
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang)
+    return response

@@ -179,6 +179,8 @@ TIME_ZONE = "UTC"
 
 USE_I18N = True
 
+LANGUAGE_COOKIE_NAME = "lang"
+
 USE_L10N = True
 
 USE_TZ = True
