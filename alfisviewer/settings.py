@@ -60,9 +60,6 @@ LOGGING = CONFIG.get(
     },
 )
 
-# Locale files folder
-LOCALE_PATHS = [BASE_DIR / "locale"]
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -173,7 +170,10 @@ LANGUAGES = (
     ("ru", "Russian"),
 )
 
-LANGUAGE_CODES = ["en", "ru"]
+LANGUAGE_CODES = ("en", "ru")
+
+# Locale files folder
+LOCALE_PATHS = (BASE_DIR / "locale", )
 
 TIME_ZONE = "UTC"
 
