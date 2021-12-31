@@ -1,0 +1,8 @@
+image: ubuntu/jammy
+environment:
+  deploy: deploy@kazi.cofob.ru
+secrets:
+  - 3b123d40-8542-49cb-88e9-4552aa2a02fa
+tasks:
+  - deploy: |
+      ssh -o StrictHostKeyChecking=no $deploy 'sudo bash deploy_alfis'
