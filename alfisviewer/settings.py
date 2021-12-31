@@ -61,7 +61,7 @@ LOGGING = CONFIG.get(
 )
 
 # Locale files folder
-LOCALE_PATHS = [BASE_DIR / 'locale']
+LOCALE_PATHS = [BASE_DIR / "locale"]
 
 
 # Quick-start development settings - unsuitable for production
@@ -101,7 +101,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    'django.middleware.locale.LocaleMiddleware'
+    "django.middleware.locale.LocaleMiddleware",
 ]
 
 ROOT_URLCONF = "alfisviewer.urls"
@@ -169,11 +169,11 @@ AUTH_PASSWORD_VALIDATORS = [
 LANGUAGE_CODE = "en-us"
 
 LANGUAGES = (
-    ('en', 'English'),
-    ('ru', 'Russian'),
+    ("en", "English"),
+    ("ru", "Russian"),
 )
 
-LANGUAGE_CODES = ['en', 'ru']
+LANGUAGE_CODES = ["en", "ru"]
 
 TIME_ZONE = "UTC"
 
