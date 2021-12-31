@@ -73,6 +73,8 @@ function css(element, style) {
 }
 
 function set_lang(lang) {
+    let obj = document.getElementById(lang+'-button');
+    obj.classList.add("is-loading");
     reqwest({
         url: "/set_lang/"+lang, method: 'get', success: function (resp) {
             document.location.replace(window.location.pathname);
