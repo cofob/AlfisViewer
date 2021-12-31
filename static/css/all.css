@@ -26,3 +26,7 @@ html{overflow-y:hidden}body,html{height:100%;margin:0}body{background-repeat:no-
     right: 0px;
     opacity: 1;
 }
+
+.lang-button {
+    transition: 0.3s;
+}

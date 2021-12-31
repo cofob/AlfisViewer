@@ -76,8 +76,15 @@ function set_lang(lang) {
     let obj = document.getElementById(lang+'-button');
     obj.classList.add("is-loading");
     reqwest({
-        url: "/set_lang/"+lang, method: 'get', success: function (resp) {
-            document.location.replace(window.location.pathname);
+        url: "/set_lang/"+lang,
+        method: 'get',
+        success: function (resp) {document.location.replace(window.location.pathname);},
+        error: function (err) {
+            obj.classList.remove("is-loading");
+            obj.classList.add("is-danger");
+            setTimeout(function () {
+                obj.classList.remove("is-danger");
+            }, 1500);
         }
     })
 }
