@@ -3,9 +3,13 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from .utils import serve_file
+from django.conf.urls.i18n import i18n_patterns
 
 urlpatterns = [
     path("admin/", admin.site.urls),
+]
+
+urlpatterns += i18n_patterns(
     path("", include("index.urls")),
     path("block/", include("block.urls")),
     path("search/", include("search.urls")),
@@ -17,7 +21,7 @@ urlpatterns = [
         name="blockchain",
     ),
     path("favicon.ico", serve_file("favicon.ico", "image/x-icon")),
-]
+)
 
 if settings.DEBUG:
     urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

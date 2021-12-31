@@ -1,5 +1,4 @@
 import time
-
 from django.shortcuts import render
 import alfis_connector as alfis
 from domain.models import Domain
@@ -7,6 +6,9 @@ from block.models import Block
 from hashlib import sha256
 from json import dumps, loads
 from binascii import unhexlify
+from django.http.response import JsonResponse
+from django.conf import settings
+from django.utils import translation
 
 
 def index(request):

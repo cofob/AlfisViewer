@@ -70,3 +70,23 @@ function css(element, style) {
     for (const property in style)
         element.style[property] = style[property];
 }
+
+function set_lang(lang) {
+    let URL = window.location.pathname;
+    for (i of ['en', 'ru']){
+        URL = URL.replace("/"+i, "/"+lang);
+    };
+    console.log(URL);
+    document.location.replace(URL);
+}
+
+function refreshCountdown() {
+    let obj = document.getElementById("refreshCountdown");
+    let i = parseInt(obj.innerText);
+    if (i != 0) {
+        obj.innerText = i-1;
+        setTimeout(refreshCountdown, 1000);
+    }
+}
+
+setTimeout(refreshCountdown, 1000);
