@@ -9,6 +9,7 @@ html{overflow-y:hidden}body,html{height:100%;margin:0}body{background-repeat:no-
 .language-box-hover {
 	pointer-events: none;
 	padding: 20px;
+    overflow: hidden;
 }
 
 .language-box-inner {
@@ -20,6 +21,7 @@ html{overflow-y:hidden}body,html{height:100%;margin:0}body{background-repeat:no-
     padding: 20px;
     padding-right: 50px;
     padding-left: 40px;
+    overflow: hidden;
 }
 
 .language-box-hover:hover > .language-box-inner {
