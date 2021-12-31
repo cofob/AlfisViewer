@@ -173,7 +173,7 @@ LANGUAGES = (
 LANGUAGE_CODES = ("en", "ru")
 
 # Locale files folder
-LOCALE_PATHS = (BASE_DIR / "locale", )
+LOCALE_PATHS = (BASE_DIR / "locale",)
 
 TIME_ZONE = "UTC"
 
