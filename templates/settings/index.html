@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load common_tags %}
+{% load i18n %}
+{% block content %}
+    <h1>{% trans "Settings" %}</h1>
+    <h2>{% trans "Language" %}</h2>
+    <div class="field has-addons">
+      <p class="control">
+        <button class="button lang-button" id="ru-button" onclick="set_lang('ru');">
+          <span>RU</span>
+        </button>
+      </p>
+      <p class="control">
+        <button class="button lang-button" id="en-button" onclick="set_lang('en');">
+          <span>EN</span>
+        </button>
+      </p>
+    </div>
+{% endblock content %}
+{% block script %}
+<script>set_tab('settings')</script>
+{% endblock script %}

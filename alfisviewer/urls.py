@@ -12,6 +12,7 @@ urlpatterns = [
     path("search/", include("search.urls")),
     path("domain/", include("domain.urls")),
     path("key/", include("key.urls")),
+    path("settings/", include("settings_app.urls")),
     path(
         "blockchain.db",
         serve_file("blockchain.db", "application/x-sqlite3"),

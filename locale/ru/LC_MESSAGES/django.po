@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-31 09:26+0000\n"
-"PO-Revision-Date: 2022-01-01 01:09+0700\n"
+"POT-Creation-Date: 2022-01-02 15:52+0000\n"
+"PO-Revision-Date: 2022-01-02 22:53+0700\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: ru_RU\n"
@@ -232,6 +232,14 @@ msgstr "Не найдено"
 #: templates/search/index.html:10
 msgid "Full match"
 msgstr "Точное совпадение"
+
+#: templates/settings/index.html:5
+msgid "Settings"
+msgstr "Настройки"
+
+#: templates/settings/index.html:6
+msgid "Language"
+msgstr "Язык"
 
 #: venv/Lib/site-packages/click/_termui_impl.py:496
 #, python-brace-format
