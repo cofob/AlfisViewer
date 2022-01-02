@@ -88,7 +88,7 @@ INSTALLED_APPS = [
     "search.apps.SearchConfig",
     "key.apps.KeyConfig",
     "alfisviewer.lib",
-    'settings_app.apps.SettingsAppConfig'
+    "settings_app.apps.SettingsAppConfig",
 ]
 
 MIDDLEWARE = [
