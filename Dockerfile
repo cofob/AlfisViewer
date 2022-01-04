@@ -7,7 +7,7 @@ LABEL		org.opencontainers.image.licenses=MIT
 
 RUN			mkdir /alfisviewer
 COPY		. /alfisviewer
-RUN 		apt update && apt install libmariadbclient-dev -y
+RUN 		apt update && apt install libmariadb-dev -y
 RUN			pip3 install -r /alfisviewer/requirements.txt
 
 EXPOSE		80/tcp
