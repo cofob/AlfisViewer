@@ -1,8 +1,10 @@
 from peewee import *
 from time import time
+from os import environ
 
 
-db = SqliteDatabase("blockchain.db")
+DB_FILE = environ.get("ALFIS_DB", "blockchain.db")
+db = SqliteDatabase(DB_FILE)
 
 
 BLOCK_COUNT = [0, 0]

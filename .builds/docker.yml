@@ -1,0 +1,19 @@
+image: ubuntu/lts
+secrets:
+- 181a05d1-5754-4673-8ee0-f3c9e1be834d
+sources:
+- https://git.sr.ht/~cofob/AlfisViewer
+tasks:
+- setup-docker: |
+    curl -fsSL https://get.docker.com -o get-docker.sh
+    sudo sh get-docker.sh
+    sudo systemctl start docker
+    sudo chmod 666 /var/run/docker.sock
+    sudo usermod -aG docker ${USER}
+    sleep 10
+    cat ~/.docker_pass | docker login --username cofob --password-stdin
+- build-alfis: |
+    cd AlfisViewer
+    sudo docker build -t alfisviewer .
+    docker tag alfisviewer cofob/alfisviewer
+    docker image push cofob/alfisviewer
