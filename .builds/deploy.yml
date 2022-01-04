@@ -5,4 +5,5 @@ secrets:
   - 3b123d40-8542-49cb-88e9-4552aa2a02fa
 tasks:
   - deploy: |
+      sleep 300
       ssh -o StrictHostKeyChecking=no $deploy 'sudo bash deploy_alfis'
