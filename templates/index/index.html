@@ -5,7 +5,7 @@
     {% url 'stats' as stats_url %}
     <p>{% blocktrans with url=stats_url %}Alfis <a href="{{ url }}">statistics</a>.{% endblocktrans %}</p>
     {% url 'blockchain' as blockchain_url %}
-    <p>{% blocktrans with url=stats_url %}You can download latest <a href="{{ url }}">blockchain</a>.{% endblocktrans %}</p>
+    <p>{% blocktrans with url=blockchain_url %}You can download latest <a href="{{ url }}">blockchain</a>.{% endblocktrans %}</p>
 {% endblock content %}
 {% block script %}
 <script>
