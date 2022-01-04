@@ -7,6 +7,7 @@ LABEL		org.opencontainers.image.licenses=MIT
 
 RUN			mkdir /alfisviewer
 COPY		. /alfisviewer
+COPY		entrypoint.sh /entrypoint.sh
 RUN 		apt update && apt install libmariadb-dev -y
 RUN			pip3 install -r /alfisviewer/requirements.txt
 
@@ -18,4 +19,4 @@ WORKDIR		/alfisviewer
 
 VOLUME		["/alfisviewer"]
 
-CMD			[ "gunicorn", "alfisviewer.wsgi" ]
+CMD			[ "/bin/bash", "/entrypoint.sh" ]
