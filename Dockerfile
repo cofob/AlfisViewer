@@ -10,7 +10,7 @@ COPY		. /alfisviewer
 RUN 		apt update && apt install libmariadb-dev -y
 RUN			pip3 install -r /alfisviewer/requirements.txt
 
-EXPOSE		80/tcp
+EXPOSE		8000/tcp
 
 ENV			ALFIS_DB=blockchain.db
 
