@@ -11,7 +11,7 @@ COPY		entrypoint.sh /entrypoint.sh
 RUN 		apt update && apt install libmariadb-dev gettext -y
 RUN			pip3 install -r /alfisviewer/requirements.txt
 
-EXPOSE		8000/tcp
+EXPOSE		80/tcp
 
 ENV			ALFIS_DB=blockchain.db
 
