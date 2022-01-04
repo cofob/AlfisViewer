@@ -5,6 +5,7 @@ LABEL		author="cofob" maintainer="c@cofob.ru"
 LABEL		org.opencontainers.image.source="https://git.sr.ht/~cofob/AlfisViewer"
 LABEL		org.opencontainers.image.licenses=MIT
 
+ARG			CACHEBUST=1
 RUN			mkdir /alfisviewer
 COPY		. /alfisviewer
 COPY		entrypoint.sh /entrypoint.sh
