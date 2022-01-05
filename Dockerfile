@@ -1,4 +1,4 @@
-FROM		python
+FROM		python:slim
 
 LABEL		author="cofob" maintainer="c@cofob.ru"
 
@@ -18,6 +18,6 @@ ENV			ALFIS_DB=blockchain.db
 
 WORKDIR		/alfisviewer
 
-VOLUME		["/alfisviewer"]
+VOLUME		[ "/alfisviewer" ]
 
 CMD			[ "/bin/bash", "/entrypoint.sh" ]
