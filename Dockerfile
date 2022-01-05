@@ -9,7 +9,7 @@ ARG			CACHEBUST=1
 RUN			mkdir /alfisviewer
 COPY		. /alfisviewer
 COPY		entrypoint.sh /entrypoint.sh
-RUN 		apt update && apt install libmariadb-dev gettext -y
+RUN 		apt update && apt install libmariadb-dev gettext git -y
 RUN			pip3 install -r /alfisviewer/requirements.txt
 
 EXPOSE		80/tcp
