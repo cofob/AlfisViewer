@@ -2,6 +2,7 @@ import json
 import re
 from django.urls import reverse
 import alfis_connector
+import alfisviewer.utils
 from domain.models import Domain
 from block.models import Block
 from django.http.response import Http404, HttpResponseRedirect
@@ -117,7 +118,8 @@ def domain_list(request):
     if page < 0:
         return HttpResponseRedirect(
             reverse("domain_list")
-            + "?p=%s" % str(int(alfis_connector.get_domain_count() / 20))
+            + "?p=%s"
+            % str(alfisviewer.utils.get_page(alfis_connector.get_domain_count(), 20))
         )
     if page > int(alfis_connector.get_domain_count() / 20):
         return HttpResponseRedirect(reverse("domain_list") + "?p=%s" % "0")

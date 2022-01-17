@@ -6,6 +6,7 @@ from .models import Block
 from django.shortcuts import render
 from django.http.response import Http404, HttpResponseRedirect
 import alfis_connector as alfis
+import alfisviewer.utils
 
 
 def block_list(request):
@@ -15,7 +16,8 @@ def block_list(request):
         return HttpResponseRedirect(reverse("block_list"))
     if page < 0:
         return HttpResponseRedirect(
-            reverse("block_list") + "?p=%s" % str(int(alfis.get_block_count() / 20))
+            reverse("block_list")
+            + "?p=%s" % str(alfisviewer.utils.get_page(alfis.get_block_count(), 20))
         )
     if page > int(alfis.get_block_count() / 20):
         return HttpResponseRedirect(reverse("block_list") + "?p=%s" % "0")

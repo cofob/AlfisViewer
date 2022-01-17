@@ -22,3 +22,10 @@ def serve_file(file, content_type):
         return serve(request, os.path.basename(file), os.path.dirname(file))
 
     return serve_file_middle
+
+
+def get_page(curr, max_val):
+    out = curr / max_val
+    if curr % max_val == 0 and curr > 0:
+        out -= 1
+    return out
