@@ -30,7 +30,7 @@ def domain(request, domain_id):
             do = Domain.objects.get(hash=d, zone=z)
     except Domain.DoesNotExist:
         raise Http404
-    d_lst = Domains.select().filter(identity=unhexlify(do.hash))
+    d_lst = reversed(list(Domains.select().filter(identity=unhexlify(do.hash))))
     for d in d_lst:
         data = json.loads(d.data)
         data_str = json.dumps(data, indent=2)
