@@ -3,7 +3,6 @@ from domain.models import Domain
 from alfis_connector import Blocks
 from binascii import unhexlify
 from domain.utils import get_domain_hash
-from random import choice
 
 
 def index(request):
@@ -47,24 +46,5 @@ def index(request):
             "domain_fullmatch": domain_fullmatch,
             "key": key,
             "query": query,
-            "random": choice(
-                [
-                    "cofob.ygg",
-                    "index.ygg",
-                    "git.srv",
-                    "cr.srv",
-                    "site.srv",
-                    "rutracker.ygg",
-                    "linux.ygg",
-                    "gosuslugi.ygg",
-                    "yandex.ygg",
-                    "ru.ygg",
-                    "home.ygg",
-                    "lewd.ygg",
-                    "naturism.ygg",
-                    "forum.ygg",
-                    "meduza.ygg",
-                ]
-            ),
         },
     )
