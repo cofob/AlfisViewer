@@ -77,7 +77,10 @@ def stats(request):
     empty_domains = 0
     lst = []
     for d in Domain.objects.all():
-        domain = list(alfis.Domains.filter(identity=unhexlify(d.hash)))[-1]
+        try:
+            domain = list(alfis.Domains.filter(identity=unhexlify(d.hash)))[-1]
+        except IndexError:
+            continue
         data = loads(domain.data)
         data["records"] = data.get("records", [])
         if not data["records"]:
