@@ -3,11 +3,11 @@
 {% load i18n %}
 {% block content %}
 <h1>{% trans "Domain list" %}</h1>
-<p><a href="{% url 'domain_list' %}?p={{ page|incr }}"><< </a><a href="{% url 'domain_list' %}?p={{ page|decr }}"> >></a></p>
+<p><a href="{% url 'domain_list' %}?p={{ page|decr }}"><< </a><a href="{% url 'domain_list' %}?p={{ page|incr }}"> >></a></p>
 {% for item in list %}
     <p><a href="{% url 'domain' item %}"><code>{{ item|get_domain_str }}</code></a></p>
 {% endfor %}
-<p><a href="{% url 'domain_list' %}?p={{ page|incr }}"><< </a><a href="{% url 'domain_list' %}?p={{ page|decr }}"> >></a></p>
+<p><a href="{% url 'domain_list' %}?p={{ page|decr }}"><< </a><a href="{% url 'domain_list' %}?p={{ page|incr }}"> >></a></p>
 {% endblock content %}
 {% block script %}
 <script>set_tab('domain')</script>
