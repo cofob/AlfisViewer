@@ -7,8 +7,6 @@ DB_FILE = environ.get("ALFIS_DB", "blockchain.db")
 db = SqliteDatabase(DB_FILE)
 
 
-BLOCK_COUNT = [0, 0]
-LATEST_BLOCK = [0, 0]
 DOMAIN_COUNT = [0, 0]
 
 
@@ -50,11 +48,7 @@ db.create_tables([Blocks, Domains, Options])
 
 
 def get_block_count():
-    global BLOCK_COUNT
-    t = time()
-    if BLOCK_COUNT[1] + 30 < t:
-        BLOCK_COUNT = [Blocks.select().count(), t]
-    return BLOCK_COUNT[0]
+    return Blocks.select().count()
 
 
 def get_domain_count():
@@ -66,8 +60,4 @@ def get_domain_count():
 
 
 def get_latest_block():
-    global LATEST_BLOCK
-    t = time()
-    if LATEST_BLOCK[1] + 30 < t:
-        LATEST_BLOCK = [Blocks.select().order_by(-Blocks.id)[0], t]
-    return LATEST_BLOCK[0]
+    return Blocks.select().order_by(-Blocks.id)[0]
