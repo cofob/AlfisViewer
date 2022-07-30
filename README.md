@@ -9,4 +9,4 @@
    - [x] Запоминание просмотренных доменов (расшифровка)
  - [x] [Докер](https://hub.docker.com/r/cofob/alfisviewer) контейнер и инструкция по развёртыванию
 
-# [Демо](https://alfis.cofob.ru/)
+# [Демо](https://viewer.alfis.name/)
